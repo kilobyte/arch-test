@@ -1,8 +1,8 @@
-ARCHS=amd64 x32 i386 win32 win64
+ARCHS=amd64 x32 i386 win32 win64 mips mipsel
 all: $(ARCHS:%=arch-detect-%)
 
 clean:
-	rm -f *.o arch-detect-*
+	rm -f *.o arch-detect-* core *.core
 
 arch-detect-amd64: amd64.s
 	x86_64-linux-gnu-as $^ -o amd64.o
@@ -21,3 +21,11 @@ arch-detect-win32: generic.c
 
 arch-detect-win64: generic.c
 	x86_64-w64-mingw32-gcc $^ -s -o $@
+
+arch-detect-mips: mips.s
+	mips-linux-gnu-as -32 -EB $^ -o mips.o
+	mips-linux-gnu-ld -melf32btsmip -s mips.o -o $@
+
+arch-detect-mipsel: mips.s
+	mips-linux-gnu-as -32 -EL $^ -o mipsel.o
+	mips-linux-gnu-ld -melf32ltsmip -s mipsel.o -o $@
