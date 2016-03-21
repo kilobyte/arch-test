@@ -1,0 +1,4 @@
+*~
+*.o
+arch-detect-*
+core
