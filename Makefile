@@ -1,4 +1,4 @@
-ARCHS=amd64 x32 i386 win32 win64 mips mipsel
+ARCHS=amd64 x32 i386 win32 win64 mips mipsel mips64 mips64el
 all: $(ARCHS:%=arch-detect-%)
 
 clean:
@@ -29,3 +29,11 @@ arch-detect-mips: mips.s
 arch-detect-mipsel: mips.s
 	mips-linux-gnu-as -32 -EL $^ -o mipsel.o
 	mips-linux-gnu-ld -melf32ltsmip -s mipsel.o -o $@
+
+arch-detect-mips64: mips64.s
+	mips-linux-gnu-as -64 -EB $^ -o mips64.o
+	mips-linux-gnu-ld -melf64btsmip -s mips64.o -o $@
+
+arch-detect-mips64el: mips64.s
+	mips-linux-gnu-as -64 -EL $^ -o mips64el.o
+	mips-linux-gnu-ld -melf64ltsmip -s mips64el.o -o $@
