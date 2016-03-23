@@ -1,4 +1,4 @@
-ARCHS=amd64 x32 i386 win32 win64 mips mipsel mips64 mips64el
+ARCHS=amd64 x32 i386 win32 win64 mips mipsel mips64 mips64el illumos-amd64
 all: $(ARCHS:%=arch-detect-%)
 
 clean:
@@ -37,3 +37,7 @@ arch-detect-mips64: mips64.s
 arch-detect-mips64el: mips64.s
 	mips-linux-gnu-as -64 -EL $^ -o mips64el.o
 	mips-linux-gnu-ld -melf64ltsmip -s mips64el.o -o $@
+
+arch-detect-illumos-amd64: solaris-amd64.s
+	x86_64-linux-gnu-as $^ -o illumos-amd64.o
+	x86_64-linux-gnu-ld -s illumos-amd64.o -o $@
