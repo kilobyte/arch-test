@@ -12,3 +12,9 @@ _start:
 	mov	$01, %eax	# syscall: _exit(rdi)
 	xor	%rdi, %rdi
 	syscall
+
+	# <-- unreachable on Solaris
+	# hack: don't segfault on Linux, exit cleanly with code 1
+	mov	$60, %rax       # Linux syscall: _exit(rdi)
+	mov	$1, %rdi
+	syscall
