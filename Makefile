@@ -50,6 +50,6 @@ arch-detect-ppc64: ppc64.s
 	powerpc-linux-gnu-as -a64 $^ -o ppc64.o
 	powerpc-linux-gnu-ld -melf64ppc -s ppc64.o -o $@
 
-arch-detect-ppc64el: ppc64.s
-	powerpc64le-linux-gnu-as $^ -o ppc64el.o
+arch-detect-ppc64el: ppc64el.s
+	powerpc64le-linux-gnu-as -mpower8 $^ -o ppc64el.o
 	powerpc64le-linux-gnu-ld -s ppc64el.o -o $@
