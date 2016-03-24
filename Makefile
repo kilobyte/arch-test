@@ -1,4 +1,13 @@
-ARCHS=amd64 x32 i386 win32 win64 mips mipsel mips64 mips64el illumos-amd64 powerpc ppc64 ppc64el s390x arm64 arm armel armhf sh4 m68k sparc64 sparc
+ARCHS=amd64 x32 i386 \
+	win32 win64 \
+	mips mipsel mips64 mips64el \
+	illumos-amd64 \
+	powerpc ppc64 ppc64el \
+	s390x \
+	arm64 arm armel armhf \
+	sh4 \
+	m68k \
+	sparc sparc64
 all: $(ARCHS:%=arch-detect-%)
 
 clean:
@@ -9,7 +18,8 @@ install: all
 	install -p arch-detect $(ARCHS:%=arch-detect-%) $(PREFIX)/bin/
 	mkdir -p $(PREFIX)/share/man/man1/
 	install -p *.1 $(PREFIX)/share/man/man1/
-	for x in $(ARCHS);do ln -sf arch-detect.helper.1 $(PREFIX)/share/man/man1/arch-detect-$$x.1;done
+	for x in $(ARCHS);do ln -sf arch-detect.helper.1 \
+		 $(PREFIX)/share/man/man1/arch-detect-$$x.1;done
 
 arch-detect-amd64: amd64.s
 	x86_64-linux-gnu-as $^ -o amd64.o
