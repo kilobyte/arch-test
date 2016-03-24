@@ -1,4 +1,4 @@
-ARCHS=amd64 x32 i386 win32 win64 mips mipsel mips64 mips64el illumos-amd64 powerpc ppc64 ppc64el s390x
+ARCHS=amd64 x32 i386 win32 win64 mips mipsel mips64 mips64el illumos-amd64 powerpc ppc64 ppc64el s390x arm64
 all: $(ARCHS:%=arch-detect-%)
 
 clean:
@@ -57,3 +57,7 @@ arch-detect-ppc64el: ppc64el.s
 arch-detect-s390x: s390x.s
 	s390x-linux-gnu-as $^ -o s390x.o
 	s390x-linux-gnu-ld -s s390x.o -o $@
+
+arch-detect-arm64: arm64.s
+	aarch64-linux-gnu-as $^ -o arm64.o
+	aarch64-linux-gnu-ld -s arm64.o -o $@
