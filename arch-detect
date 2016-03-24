@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+# Need bash not dash because of https://bugs.debian.org/816313
 
 # Near-misses fail with SIGILL or SIGSEGV, we don't want core dumps.
 ulimit -c 0
