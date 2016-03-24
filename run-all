@@ -5,12 +5,12 @@
 for x in arch-detect-*
   do
     arch=${x##arch-detect-}
-    printf '\033[33m%s\033[0m\n' "$x"
+    printf '\e[33m%s\e[0m\n' "$x"
     MSG=`"./$x" 2>/dev/null`
     RET=$?
     if [ $RET -eq 0 -a "x$MSG" = "xok" ]
       then COL="32" # green
       else COL="31" # red
     fi
-    printf '\033[%smret=\033[1m%d\033[0;%sm MSG=\033[1m%s\033[0m\n' "$COL" "$RET" "$COL" "$MSG"
+    printf '\e[%smret=\e[1m%d\e[0;%sm MSG=\e[1m%s\e[0m\n' "$COL" "$RET" "$COL" "$MSG"
   done
