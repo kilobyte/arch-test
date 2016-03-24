@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Verbose script for debug purposes.
+
+for x in arch-detect-*
+  do
+    arch=${x##arch-detect-}
+    printf '\033[33m%s\033[0m\n' "$x"
+    MSG=`"./$x" 2>/dev/null`
+    printf '\033[35mret=\033[1m%d\033[21m MSG=\033[1m%s\033[0m\n' "$?" "$MSG"
+  done
