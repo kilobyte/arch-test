@@ -1,6 +1,6 @@
 .TH arch-detect 1
 .SH NAME
-arch-detect \- detect architectures your kernel can run
+arch-detect \- detect architectures your kernel can run binaries of
 .SH SYNOPSIS
 .B arch-detect
 .SH DESCRIPTION
@@ -14,8 +14,6 @@ run additional architectures can be gained via \fIbinfmt\fRs on Linux, Linux
 emulation on BSD, etc.
 .SS "Helper programs"
 You can check the presence of a specific architecture directly by executing
-\&\fB/usr/bin/arch\-detect\-$ARCH\fR, although you're advised to redirect the
-\&\fIstderr\fR and disable core dumps (\fBulimit \-c 0\fR) as certain checks give a
-negative answer rather messily.
+\&\fB/usr/bin/arch\-detect\-$ARCH\fR, please see their manpage.
 .SH "SEE ALSO"
-arch\-detect\-*
+arch\-detect\-*(1)
