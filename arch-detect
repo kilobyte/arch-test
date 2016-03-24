@@ -4,7 +4,9 @@
 # Near-misses fail with SIGILL or SIGSEGV, we don't want core dumps.
 ulimit -c 0
 
-for x in $0-*
+HELPERS=$0-*
+
+for x in $HELPERS
   do
     ARCH="$(basename "$x")"
     ARCH="${ARCH##arch-detect-}"

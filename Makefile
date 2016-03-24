@@ -15,11 +15,14 @@ clean:
 
 PREFIX=/usr/local
 install: all
-	install -p arch-detect $(ARCHS:%=arch-detect-%) $(PREFIX)/bin/
+	mkdir -p $(PREFIX)/lib/arch-detect/
+	sed -e "s|^HELPERS.*|HELPERS=$(PREFIX)/lib/arch-detect/*|" \
+		<arch-detect >$(PREFIX)/bin/arch-detect
+	chmod a+x $(PREFIX)/bin/arch-detect
+	for x in $(ARCHS); \
+		do cp -p arch-detect-$$x $(PREFIX)/lib/arch-detect/$$x;done
 	mkdir -p $(PREFIX)/share/man/man1/
 	install -p *.1 $(PREFIX)/share/man/man1/
-	for x in $(ARCHS);do ln -sf arch-detect.helper.1 \
-		 $(PREFIX)/share/man/man1/arch-detect-$$x.1;done
 
 arch-detect-amd64: amd64.s
 	x86_64-linux-gnu-as $^ -o amd64.o
