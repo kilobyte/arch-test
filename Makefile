@@ -4,6 +4,13 @@ all: $(ARCHS:%=arch-detect-%)
 clean:
 	rm -f *.o arch-detect-* core *.core
 
+PREFIX=/usr/local
+install: all
+	install -p arch-detect $(ARCHS:%=arch-detect-%) $(PREFIX)/bin/
+	mkdir -p $(PREFIX)/share/man/man1/
+	install -p *.1 $(PREFIX)/share/man/man1/
+	for x in $(ARCHS);do ln -sf arch-detect.helper.1 $(PREFIX)/share/man/man1/arch-detect-$$x.1;done
+
 arch-detect-amd64: amd64.s
 	x86_64-linux-gnu-as $^ -o amd64.o
 	x86_64-linux-gnu-ld -s amd64.o -o $@
