@@ -1,4 +1,4 @@
-ARCHS=amd64 x32 i386 win32 win64 mips mipsel mips64 mips64el illumos-amd64 powerpc ppc64 ppc64el s390x arm64 arm armel armhf sh4 m68k sparc64
+ARCHS=amd64 x32 i386 win32 win64 mips mipsel mips64 mips64el illumos-amd64 powerpc ppc64 ppc64el s390x arm64 arm armel armhf sh4 m68k sparc64 sparc
 all: $(ARCHS:%=arch-detect-%)
 
 clean:
@@ -92,3 +92,7 @@ arch-detect-m68k: m68k.s
 arch-detect-sparc64: sparc64.s
 	sparc64-linux-gnu-as $^ -o sparc64.o
 	sparc64-linux-gnu-ld -s sparc64.o -o $@
+
+arch-detect-sparc: sparc.s
+	sparc64-linux-gnu-as --32 $^ -o sparc.o
+	sparc64-linux-gnu-ld -melf32_sparc -s sparc.o -o $@
