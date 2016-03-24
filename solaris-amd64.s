@@ -9,6 +9,8 @@ _start:
 	mov	$4, %eax	# syscall: write(rdi, rsi, rdx)
 	syscall
 
+	# hack: syscall 1 is write() on Linux, write nothing
+	mov	$0, %rdx
 	mov	$01, %eax	# syscall: _exit(rdi)
 	xor	%rdi, %rdi
 	syscall
