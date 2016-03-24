@@ -1,0 +1,5 @@
+arch-detect (0.1-1) unstable; urgency=medium
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Adam Borowski <kilobyte@angband.pl>  Thu, 24 Mar 2016 21:20:47 +0100
