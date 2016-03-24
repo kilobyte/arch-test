@@ -1,4 +1,4 @@
-ARCHS=amd64 x32 i386 win32 win64 mips mipsel mips64 mips64el illumos-amd64 powerpc ppc64 ppc64el s390x arm64
+ARCHS=amd64 x32 i386 win32 win64 mips mipsel mips64 mips64el illumos-amd64 powerpc ppc64 ppc64el s390x arm64 arm armel armhf
 all: $(ARCHS:%=arch-detect-%)
 
 clean:
@@ -61,3 +61,15 @@ arch-detect-s390x: s390x.s
 arch-detect-arm64: arm64.s
 	aarch64-linux-gnu-as $^ -o arm64.o
 	aarch64-linux-gnu-ld -s arm64.o -o $@
+
+arch-detect-arm: arm.oabi.s
+	arm-linux-gnueabihf-as $^ -o arm.o
+	arm-linux-gnueabihf-ld -s arm.o -o $@
+
+arch-detect-armel: arm.eabi.s
+	arm-linux-gnueabihf-as $^ -o armel.o
+	arm-linux-gnueabihf-ld -s armel.o -o $@
+
+arch-detect-armhf: armhf.s
+	arm-linux-gnueabihf-as $^ -o armhf.o
+	arm-linux-gnueabihf-ld -s armhf.o -o $@
