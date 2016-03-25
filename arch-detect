@@ -27,7 +27,7 @@ for x in $HELPERS*
   do
     ARCH="$(basename "$x")"
     ARCH="${ARCH##arch-detect-}"
-    MSG=`"$x" 2>/dev/null`
+    MSG=`"$x" 2>/dev/null|tr -d '\r'`
     if [ $? -eq 0 -a "x$MSG" = "xok" ]
       then echo "$ARCH"
     fi

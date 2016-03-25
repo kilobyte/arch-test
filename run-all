@@ -6,7 +6,7 @@ for x in arch-detect-*
   do
     arch=${x##arch-detect-}
     printf '\e[33m%s\e[0m\n' "$x"
-    MSG=`"./$x" 2>/dev/null`
+    MSG=`"./$x" 2>/dev/null|tr -d '\r'`
     RET=$?
     if [ $RET -eq 0 -a "x$MSG" = "xok" ]
       then COL="32" # green
