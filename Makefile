@@ -13,16 +13,17 @@ all: $(ARCHS:%=arch-detect-%)
 clean:
 	rm -f *.o arch-detect-* core *.core
 
+DESTDIR=
 PREFIX=/usr/local
 install: all
-	mkdir -p $(PREFIX)/lib/arch-detect/
+	mkdir -p $(DESTDIR)$(PREFIX)/lib/arch-detect/
 	sed -e "s|^HELPERS.*|HELPERS=$(PREFIX)/lib/arch-detect/|" \
-		<arch-detect >$(PREFIX)/bin/arch-detect
-	chmod a+x $(PREFIX)/bin/arch-detect
-	for x in $(ARCHS); \
-		do cp -p arch-detect-$$x $(PREFIX)/lib/arch-detect/$$x;done
-	mkdir -p $(PREFIX)/share/man/man1/
-	install -p *.1 $(PREFIX)/share/man/man1/
+		<arch-detect >$(DESTDIR)$(PREFIX)/bin/arch-detect
+	chmod a+x $(DESTDIR)$(PREFIX)/bin/arch-detect
+	for x in $(ARCHS); do cp -p arch-detect-$$x \
+		$(DESTDIR)$(PREFIX)/lib/arch-detect/$$x;done
+	mkdir -p $(DESTDIR)$(PREFIX)/share/man/man1/
+	install -p *.1 $(DESTDIR)$(PREFIX)/share/man/man1/
 
 arch-detect-amd64: amd64.s
 	x86_64-linux-gnu-as $^ -o amd64.o
