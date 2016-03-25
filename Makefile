@@ -16,7 +16,7 @@ clean:
 PREFIX=/usr/local
 install: all
 	mkdir -p $(PREFIX)/lib/arch-detect/
-	sed -e "s|^HELPERS.*|HELPERS=$(PREFIX)/lib/arch-detect/*|" \
+	sed -e "s|^HELPERS.*|HELPERS=$(PREFIX)/lib/arch-detect/|" \
 		<arch-detect >$(PREFIX)/bin/arch-detect
 	chmod a+x $(PREFIX)/bin/arch-detect
 	for x in $(ARCHS); \
