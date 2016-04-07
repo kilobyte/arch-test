@@ -7,7 +7,7 @@ ulimit -c 0
 HELPERS=$0-
 
 if [ $# -gt 1 ]
-  then echo >&2 'Usage: "arch-detect" or "arch-detect <arch>".'; exit 1
+  then echo >&2 'Usage: "arch-test" or "arch-test <arch>".'; exit 1
 fi
 
 if [ $# -eq 1 ]
@@ -26,7 +26,7 @@ fi
 for x in $HELPERS*
   do
     ARCH="$(basename "$x")"
-    ARCH="${ARCH##arch-detect-}"
+    ARCH="${ARCH##arch-test-}"
     MSG=`"$x" 2>/dev/null|tr -d '\r'`
     if [ $? -eq 0 -a "x$MSG" = "xok" ]
       then echo "$ARCH"

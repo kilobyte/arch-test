@@ -1,15 +1,15 @@
-.TH arch-detect 1
+.TH arch-test 1
 .SH NAME
-arch-detect \- detect architectures your kernel can run binaries of
+arch-test \- detect architectures your kernel can run binaries of
 .SH SYNOPSIS
 .TP
-.B arch-detect
+.B arch-test
 enumerates the architectures
 .TP
-.BI arch-detect " <arch>"
+.BI arch-test " <arch>"
 tests a single arch
 .SH DESCRIPTION
-When called without an argument, \fBarch-detect\fR outputs the list of
+When called without an argument, \fBarch-test\fR outputs the list of
 architectures executable by your running kernel, one per line, using Debian
 arch names.  \fILibc\fR or other libraries are neither needed nor checked
 \&\(em an arch is listed if its machine code can be executed and the
@@ -19,7 +19,7 @@ multiarch, run static binaries, etc.  The ability to run additional
 architectures can be gained via \fIbinfmt\fRs on Linux, Linux emulation on
 BSD, etc.
 
-When called with an arch name as an argument, \fBarch-detect\fR tests the
+When called with an arch name as an argument, \fBarch-test\fR tests the
 specified architecture.  A human-friendly message will be printed, and the
 exit code can be:
 .TP
@@ -30,11 +30,11 @@ congratulations, the arch can be run on your kernel
 failure
 .TP
 .B 2
-cannot check \(em \fBarch-detect\fR lacks a helper for this arch
+cannot check \(em \fBarch-test\fR lacks a helper for this arch
 
 .SS "Helper programs"
 The detection is done by small programs located in
-\fI/usr/lib/arch-detect/\fR.  These programs check whether the running kernel
+\fI/usr/lib/arch-test/\fR.  These programs check whether the running kernel
 can execute binaries of a given architecture.  When run, if successful, each
 such program prints \fI"ok"\fR on stdout and returns exit code 0.
 
