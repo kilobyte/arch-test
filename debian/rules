@@ -7,4 +7,4 @@
 	dh $@ --parallel
 
 override_dh_auto_install:
-	$(MAKE) install PREFIX=$(CURDIR)/debian/arch-detect/usr
+	$(MAKE) install PREFIX=$(CURDIR)/debian/arch-test/usr

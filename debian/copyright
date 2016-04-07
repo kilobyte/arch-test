@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: arch-detect
-Source: https://github.com/kilobyte/arch-detect
+Upstream-Name: arch-test
+Source: https://github.com/kilobyte/arch-test
 
 Files: *
 Copyright: 2016 Adam Borowski <kilobyte@angband.pl>

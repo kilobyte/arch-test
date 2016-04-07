@@ -1,4 +1,4 @@
-Source: arch-detect
+Source: arch-test
 Section: admin
 Priority: optional
 Maintainer: Adam Borowski <kilobyte@angband.pl>
@@ -15,10 +15,10 @@ Build-Depends: debhelper (>=9),
  binutils-sparc64-linux-gnu,
  mingw-w64
 Standards-Version: 3.9.7
-Vcs-Git: https://github.com/kilobyte/arch-detect.git -b debian
-Vcs-Browser: https://github.com/kilobyte/arch-detect/tree/debian
+Vcs-Git: https://github.com/kilobyte/arch-test.git -b debian
+Vcs-Browser: https://github.com/kilobyte/arch-test/tree/debian
 
-Package: arch-detect
+Package: arch-test
 Architecture: all
 Depends: ${misc:Depends}
 Description: detect architectures supported by your machine/kernel
@@ -28,7 +28,7 @@ Description: detect architectures supported by your machine/kernel
  container or via multiarch to actually execute non-static binaries of such
  architectures.
  .
- Architectures detected by this version of arch-detect are:
+ Architectures detected by this version of arch-test are:
   * amd64, i386, x32
   * mips, mipsel, mips64, mips64el
   * arm, armel, armhf, arm64

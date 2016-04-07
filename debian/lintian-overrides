@@ -1,7 +1,7 @@
 # The helpers are small pieces of foreign machine code, meant for testing
 # given archs.  Thus, they're arch-indep here.
-arch-detect binary: arch-independent-package-contains-binary-or-object
+arch-test binary: arch-independent-package-contains-binary-or-object
 # Not statically linked -- no libc of any kind at all.
-arch-detect binary: statically-linked-binary
+arch-test binary: statically-linked-binary
 # That's PE not ELF, indeed.
-arch-detect binary: executable-not-elf-or-script
+arch-test binary: executable-not-elf-or-script

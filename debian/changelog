@@ -1,4 +1,4 @@
-arch-detect (0.1-1) unstable; urgency=medium
+arch-test (0.1-1) unstable; urgency=medium
 
   * Initial release (Closes: #819207)
 
