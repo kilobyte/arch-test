@@ -36,6 +36,6 @@ Description: detect architectures supported by your machine/kernel
   * m68k
   * sh4
   * s390x
-  * sparc64
+  * sparc, sparc64
   * illumos-amd64
   * win32, win64
