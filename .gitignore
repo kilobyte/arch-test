@@ -1,4 +1,4 @@
 *~
 *.o
-arch-detect-*
+arch-test-*
 core

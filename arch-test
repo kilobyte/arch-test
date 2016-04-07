@@ -1,0 +1,34 @@
+#!/bin/bash
+# Need bash not dash because of https://bugs.debian.org/816313
+
+# Near-misses fail with SIGILL or SIGSEGV, we don't want core dumps.
+ulimit -c 0
+
+HELPERS=$0-
+
+if [ $# -gt 1 ]
+  then echo >&2 'Usage: "arch-test" or "arch-test <arch>".'; exit 1
+fi
+
+if [ $# -eq 1 ]
+  then
+    if [ ! -x "$HELPERS$1" ]
+      then echo "I don't know how to detect arch '$1', sorry."; exit 2
+    fi
+
+    MSG=`"$HELPERS$1" 2>/dev/null`
+    if [ $? -eq 0 -a "x$MSG" = "xok" ]
+      then echo "$1: ok"; exit 0
+      else echo "$1: not supported on this machine/kernel"; exit 1
+    fi
+fi
+
+for x in $HELPERS*
+  do
+    ARCH="$(basename "$x")"
+    ARCH="${ARCH##arch-test-}"
+    MSG=`"$x" 2>/dev/null|tr -d '\r'`
+    if [ $? -eq 0 -a "x$MSG" = "xok" ]
+      then echo "$ARCH"
+    fi
+  done

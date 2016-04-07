@@ -1,0 +1,49 @@
+.TH arch-test 1
+.SH NAME
+arch-test \- detect architectures your kernel can run binaries of
+.SH SYNOPSIS
+.TP
+.B arch-test
+enumerates the architectures
+.TP
+.BI arch-test " <arch>"
+tests a single arch
+.SH DESCRIPTION
+When called without an argument, \fBarch-test\fR outputs the list of
+architectures executable by your running kernel, one per line, using Debian
+arch names.  \fILibc\fR or other libraries are neither needed nor checked
+\&\(em an arch is listed if its machine code can be executed and the
+appropriate syscall ABI is supported by the kernel.  This means, you can run
+these architectures in a \fIchroot\fR or a container, execute them using
+multiarch, run static binaries, etc.  The ability to run additional
+architectures can be gained via \fIbinfmt\fRs on Linux, Linux emulation on
+BSD, etc.
+
+When called with an arch name as an argument, \fBarch-test\fR tests the
+specified architecture.  A human-friendly message will be printed, and the
+exit code can be:
+.TP
+.B 0
+congratulations, the arch can be run on your kernel
+.TP
+.B 1
+failure
+.TP
+.B 2
+cannot check \(em \fBarch-test\fR lacks a helper for this arch
+
+.TP
+(Shell hint: with \fIset -e\fR you write: \fIret=0; arch-test $ARCH || ret=$?\fR)
+
+.SS "Helper programs"
+The detection is done by small programs located in
+\fI/usr/lib/arch-test/\fR.  These programs check whether the running kernel
+can execute binaries of a given architecture.  When run, if successful, each
+such program prints \fI"ok"\fR on stdout and returns exit code 0.
+
+When the check fails, these helper programs may die horribly \(em always
+with a non-zero exit code.  Usually the kernel will notice the
+incompatibility and nicely abort the attempt, but in some near-miss cases
+the failure is more messy, such as \fISIGILL\fR or \fISIGSEGV\fR.  If you
+want to run the helpers directly, you'd want to redirect \fIstdout\fR to
+\&\fI/dev/null\fR and to disable core dumps (\fBulimit -c 0\fR).
