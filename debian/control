@@ -14,7 +14,7 @@ Build-Depends: debhelper (>=9),
  binutils-sh4-linux-gnu,
  binutils-sparc64-linux-gnu,
  mingw-w64
-Standards-Version: 3.9.7
+Standards-Version: 3.9.8
 Vcs-Git: https://github.com/kilobyte/arch-test.git -b debian
 Vcs-Browser: https://github.com/kilobyte/arch-test/tree/debian
 
