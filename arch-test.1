@@ -45,5 +45,5 @@ When the check fails, these helper programs may die horribly \(em always
 with a non-zero exit code.  Usually the kernel will notice the
 incompatibility and nicely abort the attempt, but in some near-miss cases
 the failure is more messy, such as \fISIGILL\fR or \fISIGSEGV\fR.  If you
-want to run the helpers directly, you'd want to redirect \fIstdout\fR to
+want to run the helpers directly, you'd want to redirect \fIstderr\fR to
 \&\fI/dev/null\fR and to disable core dumps (\fBulimit -c 0\fR).
