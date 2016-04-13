@@ -1,5 +1,5 @@
-arch-test (0.1-1) unstable; urgency=medium
+arch-test (0.2-1) unstable; urgency=medium
 
   * Initial release (Closes: #819207)
 
- -- Adam Borowski <kilobyte@angband.pl>  Thu, 24 Mar 2016 21:20:47 +0100
+ -- Adam Borowski <kilobyte@angband.pl>  Mon, 11 Apr 2016 21:08:00 +0200
