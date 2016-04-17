@@ -15,6 +15,9 @@ all: $(ARCHS:%=arch-test-%)
 clean:
 	rm -f *.o arch-test-* core *.core
 
+distclean: clean
+	rm -f config
+
 DESTDIR=
 PREFIX=/usr/local
 install: all
