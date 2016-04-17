@@ -27,16 +27,16 @@ install: all
 	install -p *.1 $(DESTDIR)$(PREFIX)/share/man/man1/
 
 arch-test-amd64: amd64.s
-	x86_64-linux-gnu-as --64 $^ -o amd64.o
-	x86_64-linux-gnu-ld -melf_x86_64 -s amd64.o -o $@
+	$(X86)-as --64 $^ -o amd64.o
+	$(X86)-ld -melf_x86_64 -s amd64.o -o $@
 
 arch-test-x32: x32.s
-	x86_64-linux-gnu-as --x32 $^ -o x32.o
-	x86_64-linux-gnu-ld -melf32_x86_64 -s x32.o -o $@
+	$(X86)-as --x32 $^ -o x32.o
+	$(X86)-ld -melf32_x86_64 -s x32.o -o $@
 
 arch-test-i386: i386.s
-	x86_64-linux-gnu-as --32 $^ -o i386.o
-	x86_64-linux-gnu-ld -melf_i386 -s i386.o -o $@
+	$(X86)-as --32 $^ -o i386.o
+	$(X86)-ld -melf_i386 -s i386.o -o $@
 
 arch-test-win32: generic.c
 	i686-w64-mingw32-gcc $^ -s -o $@
@@ -45,32 +45,32 @@ arch-test-win64: generic.c
 	x86_64-w64-mingw32-gcc $^ -s -o $@
 
 arch-test-mips: mips.s
-	mips-linux-gnu-as -32 -EB $^ -o mips.o
-	mips-linux-gnu-ld -melf32btsmip -s mips.o -o $@
+	$(MIPS)-as -32 -EB $^ -o mips.o
+	$(MIPS)-ld -melf32btsmip -s mips.o -o $@
 
 arch-test-mipsel: mips.s
-	mips-linux-gnu-as -32 -EL $^ -o mipsel.o
-	mips-linux-gnu-ld -melf32ltsmip -s mipsel.o -o $@
+	$(MIPS)-as -32 -EL $^ -o mipsel.o
+	$(MIPS)-ld -melf32ltsmip -s mipsel.o -o $@
 
 arch-test-mips64: mips64.s
-	mips-linux-gnu-as -64 -EB $^ -o mips64.o
-	mips-linux-gnu-ld -melf64btsmip -s mips64.o -o $@
+	$(MIPS)-as -64 -EB $^ -o mips64.o
+	$(MIPS)-ld -melf64btsmip -s mips64.o -o $@
 
 arch-test-mips64el: mips64.s
-	mips-linux-gnu-as -64 -EL $^ -o mips64el.o
-	mips-linux-gnu-ld -melf64ltsmip -s mips64el.o -o $@
+	$(MIPS)-as -64 -EL $^ -o mips64el.o
+	$(MIPS)-ld -melf64ltsmip -s mips64el.o -o $@
 
 arch-test-illumos-amd64: solaris-amd64.s
-	x86_64-linux-gnu-as --64 $^ -o illumos-amd64.o
-	x86_64-linux-gnu-ld -melf_x86_64 -s illumos-amd64.o -o $@
+	$(X86)-as --64 $^ -o illumos-amd64.o
+	$(X86)-ld -melf_x86_64 -s illumos-amd64.o -o $@
 
 arch-test-powerpc: powerpc.s
-	powerpc-linux-gnu-as -a32 $^ -o powerpc.o
-	powerpc-linux-gnu-ld -melf32ppc -s powerpc.o -o $@
+	$(POWERPC)-as -a32 $^ -o powerpc.o
+	$(POWERPC)-ld -melf32ppc -s powerpc.o -o $@
 
 arch-test-ppc64: ppc64.s
-	powerpc-linux-gnu-as -a64 $^ -o ppc64.o
-	powerpc-linux-gnu-ld -melf64ppc -s ppc64.o -o $@
+	$(POWERPC)-as -a64 $^ -o ppc64.o
+	$(POWERPC)-ld -melf64ppc -s ppc64.o -o $@
 
 arch-test-ppc64el: ppc64el.s
 	powerpc64le-linux-gnu-as -mpower8 $^ -o ppc64el.o
@@ -85,16 +85,16 @@ arch-test-arm64: arm64.s
 	aarch64-linux-gnu-ld -s arm64.o -o $@
 
 arch-test-arm: arm.oabi.s
-	arm-linux-gnueabihf-as $^ -o arm.o
-	arm-linux-gnueabihf-ld -s arm.o -o $@
+	$(ARM)-as $^ -o arm.o
+	$(ARM)-ld -s arm.o -o $@
 
 arch-test-armel: arm.eabi.s
-	arm-linux-gnueabihf-as $^ -o armel.o
-	arm-linux-gnueabihf-ld -s armel.o -o $@
+	$(ARM)-as $^ -o armel.o
+	$(ARM)-ld -s armel.o -o $@
 
 arch-test-armhf: armhf.s
-	arm-linux-gnueabihf-as $^ -o armhf.o
-	arm-linux-gnueabihf-ld -s armhf.o -o $@
+	$(ARM)-as $^ -o armhf.o
+	$(ARM)-ld -s armhf.o -o $@
 
 arch-test-sh4: sh4.s
 	sh4-linux-gnu-as $^ -o sh4.o
@@ -105,9 +105,9 @@ arch-test-m68k: m68k.s
 	m68k-linux-gnu-ld -s m68k.o -o $@
 
 arch-test-sparc64: sparc64.s
-	sparc64-linux-gnu-as --64 $^ -o sparc64.o
-	sparc64-linux-gnu-ld -melf64_sparc -s sparc64.o -o $@
+	$(SPARC)-as --64 $^ -o sparc64.o
+	$(SPARC)-ld -melf64_sparc -s sparc64.o -o $@
 
 arch-test-sparc: sparc.s
-	sparc64-linux-gnu-as --32 $^ -o sparc.o
-	sparc64-linux-gnu-ld -melf32_sparc -s sparc.o -o $@
+	$(SPARC)-as --32 $^ -o sparc.o
+	$(SPARC)-ld -melf32_sparc -s sparc.o -o $@

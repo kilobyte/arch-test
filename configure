@@ -9,6 +9,33 @@ close MAKEFILE;
 $ARCH{$_}=1 for($1=~/[a-z0-9-]+/g);
 my @FOUND;
 
+sub alt
+{
+    my $arch = shift;
+    for (@_)
+    {
+        `which "$_-as"`;
+        $VARS{$arch}=$_, last unless $?;
+    }
+    if ($VARS{$arch})
+    {
+        s/\$\($arch\)/$VARS{$arch}/g;
+    }
+    else
+    {
+        $VARS{$arch}="{".join(',', @_)."}";
+        s/\$\($arch\)/$_[0]/g;
+    }
+}
+
+alt qw(X86 x86_64-linux-gnu i386-linux-gnu i486-linux-gnu i586-linux-gnu
+    i686-linux-gnu x86_64-linux-gnux32);
+alt qw(MIPS mips-linux-gnu mipsel-linux-gnu mips64-linux-gnuabi64
+    mips64el-linux-gnuabi64);
+alt qw(POWERPC powerpc-linux-gnu powerpc64-linux-gnu);
+alt qw(ARM arm-linux-gnueabihf arm-linux-gnueabi);
+alt qw(SPARC sparc64-linux-gnu sparc-linux-gnu);
+
 while (/^arch-test-([a-z0-9-]+):.*\n\t([a-z0-9_.-]+-(?:gcc|as))/mg)
 {
     $ARCH{$1} or die "Error: $1 known but not listed.\n";
@@ -29,3 +56,4 @@ die "Error: ".join(' ',keys %ARCH)." listed but not known.\n" if (%ARCH);
 
 open CONFIG, ">config";
 print CONFIG "ARCHS=@FOUND\n";
+print CONFIG "$_=$VARS{$_}\n" for keys %VARS;
