@@ -8,6 +8,7 @@ ARCHS=amd64 x32 i386 \
 	sh4 \
 	m68k \
 	sparc sparc64
+-include config
 all: $(ARCHS:%=arch-test-%)
 
 clean:
