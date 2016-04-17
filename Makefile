@@ -26,8 +26,8 @@ install: all
 	install -p *.1 $(DESTDIR)$(PREFIX)/share/man/man1/
 
 arch-test-amd64: amd64.s
-	x86_64-linux-gnu-as $^ -o amd64.o
-	x86_64-linux-gnu-ld -s amd64.o -o $@
+	x86_64-linux-gnu-as --64 $^ -o amd64.o
+	x86_64-linux-gnu-ld -melf_x86_64 -s amd64.o -o $@
 
 arch-test-x32: x32.s
 	x86_64-linux-gnu-as --x32 $^ -o x32.o
@@ -60,12 +60,12 @@ arch-test-mips64el: mips64.s
 	mips-linux-gnu-ld -melf64ltsmip -s mips64el.o -o $@
 
 arch-test-illumos-amd64: solaris-amd64.s
-	x86_64-linux-gnu-as $^ -o illumos-amd64.o
-	x86_64-linux-gnu-ld -s illumos-amd64.o -o $@
+	x86_64-linux-gnu-as --64 $^ -o illumos-amd64.o
+	x86_64-linux-gnu-ld -melf_x86_64 -s illumos-amd64.o -o $@
 
 arch-test-powerpc: powerpc.s
-	powerpc-linux-gnu-as $^ -o powerpc.o
-	powerpc-linux-gnu-ld -s powerpc.o -o $@
+	powerpc-linux-gnu-as -a32 $^ -o powerpc.o
+	powerpc-linux-gnu-ld -melf32ppc -s powerpc.o -o $@
 
 arch-test-ppc64: ppc64.s
 	powerpc-linux-gnu-as -a64 $^ -o ppc64.o
@@ -104,8 +104,8 @@ arch-test-m68k: m68k.s
 	m68k-linux-gnu-ld -s m68k.o -o $@
 
 arch-test-sparc64: sparc64.s
-	sparc64-linux-gnu-as $^ -o sparc64.o
-	sparc64-linux-gnu-ld -s sparc64.o -o $@
+	sparc64-linux-gnu-as --64 $^ -o sparc64.o
+	sparc64-linux-gnu-ld -melf64_sparc -s sparc64.o -o $@
 
 arch-test-sparc: sparc.s
 	sparc64-linux-gnu-as --32 $^ -o sparc.o
