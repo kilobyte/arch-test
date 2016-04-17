@@ -39,3 +39,4 @@ Description: detect architectures supported by your machine/kernel
   * sparc, sparc64
   * illumos-amd64
   * win32, win64
+  * kfreebsd-amd64, kfreebsd-i386
