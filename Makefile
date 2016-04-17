@@ -9,6 +9,11 @@ ARCHS=amd64 x32 i386 \
 	sh4 \
 	m68k \
 	sparc sparc64
+X86=x86_64-linux-gnu
+MIPS=mips-linux-gnu
+POWERPC=powerpc-linux-gnu
+ARM=arm-linux-gnueabihf
+SPARC=sparc64-linux-gnu
 -include config
 all: $(ARCHS:%=arch-test-%)
 
