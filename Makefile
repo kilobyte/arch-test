@@ -2,6 +2,7 @@ ARCHS=amd64 x32 i386 \
 	win32 win64 \
 	mips mipsel mips64 mips64el \
 	illumos-amd64 \
+	kfreebsd-amd64 kfreebsd-i386 \
 	powerpc ppc64 ppc64el \
 	s390x \
 	arm64 arm armel armhf \
@@ -63,6 +64,16 @@ arch-test-mips64el: mips64.s
 arch-test-illumos-amd64: solaris-amd64.s
 	$(X86)-as --64 $^ -o illumos-amd64.o
 	$(X86)-ld -melf_x86_64 -s illumos-amd64.o -o $@
+
+arch-test-kfreebsd-amd64: solaris-amd64.s
+	$(X86)-as --64 $^ -o kfreebsd-amd64.o
+	$(X86)-ld -melf_x86_64 -s kfreebsd-amd64.o -o $@
+	printf '\t'|dd of=$@ bs=1 count=1 seek=7 conv=notrunc
+
+arch-test-kfreebsd-i386: kfreebsd-i386.s
+	$(X86)-as --32 $^ -o kfreebsd-i386.o
+	$(X86)-ld -melf_i386 -s kfreebsd-i386.o -o $@
+	printf '\t'|dd of=$@ bs=1 count=1 seek=7 conv=notrunc
 
 arch-test-powerpc: powerpc.s
 	$(POWERPC)-as -a32 $^ -o powerpc.o

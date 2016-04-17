@@ -17,6 +17,7 @@ Architectures detected by this version of arch-test are:
  * sparc, sparc64
  * illumos-amd64
  * win32, win64
+ * kfreebsd-amd64, kfreebsd-i386
 
 
 Adding new archs
@@ -42,8 +43,6 @@ an exit code other than 0.
 Missing Debian architectures
 ============================
 
-* kfreebsd-*: no cross binutils in unstable (uses a different format, unlike
-  hurd and Solaris which share it with Linux)
 * hurd-*: how do you even do syscalls there?!?  Trying to figure it out
   exhausted my attention span.  RTFSing glibc, I see it's something bizarre:
   _exit() requests some server to terminate the process then goes into an
