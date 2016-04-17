@@ -4,15 +4,15 @@ Priority: optional
 Maintainer: Adam Borowski <kilobyte@angband.pl>
 Build-Depends: debhelper (>=9),
  binutils-x86-64-linux-gnu [!amd64],
- binutils-aarch64-linux-gnu,
- binutils-arm-linux-gnueabihf,
- binutils-m68k-linux-gnu,
- binutils-mips-linux-gnu,
- binutils-powerpc-linux-gnu,
- binutils-powerpc64le-linux-gnu,
- binutils-s390x-linux-gnu,
- binutils-sh4-linux-gnu,
- binutils-sparc64-linux-gnu,
+ binutils-aarch64-linux-gnu [!arm64],
+ binutils-arm-linux-gnueabihf [!armhf],
+ binutils-m68k-linux-gnu [!m68k],
+ binutils-mips-linux-gnu [!mips],
+ binutils-powerpc-linux-gnu [!powerpc],
+ binutils-powerpc64le-linux-gnu [!ppc64el],
+ binutils-s390x-linux-gnu [!s390x],
+ binutils-sh4-linux-gnu [!sh4],
+ binutils-sparc64-linux-gnu [!sparc64],
  mingw-w64
 Standards-Version: 3.9.8
 Vcs-Git: https://github.com/kilobyte/arch-test.git -b debian
