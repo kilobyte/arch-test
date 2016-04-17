@@ -1,3 +1,13 @@
+arch-test (0.3-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Use multilib where available to avoid broken binutils-x86-64-linux-gnu
+    on i386.
+  * Allow dropping archs by removing them from build-depends.
+  * Add a watch file.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Sun, 17 Apr 2016 19:33:47 +0200
+
 arch-test (0.2-1) unstable; urgency=medium
 
   * Initial release (Closes: #819207)
