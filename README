@@ -18,6 +18,7 @@ Architectures detected by this version of arch-test are:
  * illumos-amd64
  * win32, win64
  * kfreebsd-amd64, kfreebsd-i386
+ * alpha
 
 
 Adding new archs
@@ -47,7 +48,6 @@ Missing Debian architectures
   exhausted my attention span.  RTFSing glibc, I see it's something bizarre:
   _exit() requests some server to terminate the process then goes into an
   endless loop of dividing 1/0.
-* alpha: no machine to test it on, I'm reluctant to trust qemu exclusively
 * hppa: no machine to test, not even supported by qemu
 * ia64: no cross binutils
 * powerpcspe: no machine, debootstrap in qemu fails

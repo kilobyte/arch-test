@@ -8,7 +8,8 @@ ARCHS=amd64 x32 i386 \
 	arm64 arm armel armhf \
 	sh4 \
 	m68k \
-	sparc sparc64
+	sparc sparc64 \
+	alpha
 X86=x86_64-linux-gnu
 MIPS=mips-linux-gnu
 POWERPC=powerpc-linux-gnu
@@ -130,3 +131,7 @@ arch-test-sparc64: sparc64.s
 arch-test-sparc: sparc.s
 	$(SPARC)-as --32 $^ -o sparc.o
 	$(SPARC)-ld -melf32_sparc -s sparc.o -o $@
+
+arch-test-alpha: alpha.s
+	alpha-linux-gnu-as $^ -o alpha.o
+	alpha-linux-gnu-ld -s alpha.o -o $@
