@@ -21,6 +21,15 @@ Architectures detected by this version of arch-test are:
  * alpha
 
 
+Detection quirks
+================
+
+This tool claims FreeBSD with its Linux emulation layer on can't run i386.
+That's not a bug -- it can't run _unmodified_ i386 binaries.  There's a
+tool "brandelf" that sets field 0x7 in the ELF header, required by FreeBSD
+but not set by Linux nor Solaris toolchains.
+
+
 Adding new archs
 ================
 
