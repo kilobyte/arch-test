@@ -33,7 +33,7 @@ take too much space for such a minor tool.
 And, for non-baseline archs some specific code is needed.  Examples:
 * ppc64el requires POWER8, some versions of qemu-user can run little-endian
   PPC64 but lack some instructions required by the Debian arch.
-* armhf uses same syscall ABI with armel.
+* armhf uses same syscall ABI as armel.
 
 One way to ascertain required support is trying to run an unprivileged
 instruction that's lacking on older versions of the ISA.  This causes the
@@ -44,10 +44,9 @@ an exit code other than 0.
 Missing Debian architectures
 ============================
 
-* hurd-*: how do you even do syscalls there?!?  Trying to figure it out
-  exhausted my attention span.  RTFSing glibc, I see it's something bizarre:
-  _exit() requests some server to terminate the process then goes into an
-  endless loop of dividing 1/0.
+* hurd-*: how do you even do syscalls there?!?  RTFSing glibc, I see it's
+  something bizarre: _exit() requests some server to terminate the process
+  then goes into an endless loop of dividing 1/0.
 * hppa: no machine to test, not even supported by qemu
 * ia64: no cross binutils
 * powerpcspe: no machine, debootstrap in qemu fails
