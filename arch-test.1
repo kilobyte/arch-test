@@ -19,6 +19,12 @@ multiarch, run static binaries, etc.  The ability to run additional
 architectures can be gained via \fIbinfmt\fRs on Linux, Linux emulation on
 BSD, etc.
 
+An architecture is considered runnable only if your kernel can run
+\fIunmodified\fR binaries, without extra steps such as recompiling (Raspbian
+armhf) or using \fBbrandelf\fR on binaries you'd want to run (FreeBSD
+emulation of Linux).  Also, as Debian requires 686 on i386 as of the stretch
+release, 686 support is checked for.
+
 When called with an arch name as an argument, \fBarch-test\fR tests the
 specified architecture.  A human-friendly message will be printed, and the
 exit code can be:
