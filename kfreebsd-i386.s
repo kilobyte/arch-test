@@ -3,6 +3,8 @@
 msg:	.ascii "ok\n"
 .text
 _start:
+	cmovz	%eax, %ebx	# 686 required as of Debian stretch
+
 	pushl	$3
 	pushl	$msg
 	pushl	$1

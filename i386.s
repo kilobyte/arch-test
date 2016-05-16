@@ -3,6 +3,8 @@
 msg:	.ascii "ok\n"
 .text
 _start:
+	cmovz	%eax, %ebx	# 686 required as of Debian stretch
+
 	movl	$4, %eax	# syscall: write(ebx, ecx, edx)
 	movl	$1, %ebx
 	movl	$msg, %ecx
