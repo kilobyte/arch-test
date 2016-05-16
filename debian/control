@@ -13,7 +13,11 @@ Build-Depends: debhelper (>=9),
  binutils-s390x-linux-gnu [!s390x],
  binutils-sh4-linux-gnu [!sh4],
  binutils-sparc64-linux-gnu [!sparc64 !sparc],
+ binutils-alpha-linux-gnu [!alpha],
  mingw-w64
+# doko, others: if you want to drop some crap architecture from binutils, feel
+# free to shout at me or NMU arch-test to remove it yourself.  It is enough to
+# remove from Build-Depends, configure will do the right thing.
 Standards-Version: 3.9.8
 Vcs-Git: https://github.com/kilobyte/arch-test.git -b debian
 Vcs-Browser: https://github.com/kilobyte/arch-test/tree/debian
@@ -40,3 +44,4 @@ Description: detect architectures supported by your machine/kernel
   * illumos-amd64
   * win32, win64
   * kfreebsd-amd64, kfreebsd-i386
+  * alpha

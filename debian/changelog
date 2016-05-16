@@ -1,6 +1,14 @@
+arch-test (0.4-1) unstable; urgency=medium
+
+  * New upstream release (+alpha).
+    + require 686 on any-i386
+  * NMU instructions in debian/control.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Mon, 16 May 2016 05:02:06 +0200
+
 arch-test (0.3-1) unstable; urgency=medium
 
-  * New upstream release.
+  * New upstream release (+kfreebsd-i386, kfreebsd-amd64).
   * Use multilib where available to avoid broken binutils-x86-64-linux-gnu
     on i386.
   * Allow dropping archs by removing them from build-depends.
