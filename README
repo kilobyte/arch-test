@@ -53,9 +53,11 @@ an exit code other than 0.
 Missing Debian architectures
 ============================
 
-* hurd-*: how do you even do syscalls there?!?  RTFSing glibc, I see it's
-  something bizarre: _exit() requests some server to terminate the process
-  then goes into an endless loop of dividing 1/0.
+* hurd-*: it has no proper syscalls, the equivalent being complicated RPC
+  calls implemented inside glibc.  This is similar to Windows where the real
+  syscalls (NT) are undocumented and unstable while everyone is supposed to
+  link to "kernel" shared libraries.
+  Unfortunately for hurd, there's no cross toolchain in Debian, unlike mingw.
 * hppa: no machine to test, not even supported by qemu
 * ia64: no cross binutils
 * powerpcspe: no machine, debootstrap in qemu fails
