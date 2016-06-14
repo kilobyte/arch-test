@@ -3,7 +3,7 @@ ARCHS=amd64 x32 i386 \
 	mips mipsel mips64 mips64el \
 	illumos-amd64 \
 	kfreebsd-amd64 kfreebsd-i386 \
-	powerpc ppc64 ppc64el \
+	powerpc ppc64 ppc64el powerpcspe \
 	s390x \
 	arm64 arm armel armhf \
 	sh4 \
@@ -95,6 +95,10 @@ arch-test-ppc64: ppc64.s
 arch-test-ppc64el: ppc64el.s
 	powerpc64le-linux-gnu-as -mpower8 $^ -o ppc64el.o
 	powerpc64le-linux-gnu-ld -s ppc64el.o -o $@
+
+arch-test-powerpcspe: powerpcspe.s
+	$(POWERPC)-as -a32 -me500 $^ -o powerpcspe.o
+	$(POWERPC)-ld -melf32ppc -s powerpcspe.o -o $@
 
 arch-test-s390x: s390x.s
 	s390x-linux-gnu-as $^ -o s390x.o

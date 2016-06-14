@@ -3,6 +3,8 @@ msg:	.ascii "ok\n"
 .text
 .globl _start
 _start:
+	fsel	0, 1, 2, 3	# boom on SPE
+
 	li	0, 4	# syscall write(r3, r4, r5)
 	li	3, 1
 	lis	4, msg@ha

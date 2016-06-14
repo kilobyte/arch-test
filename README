@@ -10,7 +10,7 @@ Architectures detected by this version of arch-test are:
  * amd64, i386, x32
  * mips, mipsel, mips64, mips64el
  * arm, armel, armhf, arm64
- * powerpc, ppc64, ppc64el
+ * powerpc, ppc64, ppc64el, powerpcspe
  * m68k
  * sh4
  * s390x
@@ -42,6 +42,7 @@ take too much space for such a minor tool.
 And, for non-baseline archs some specific code is needed.  Examples:
 * ppc64el requires POWER8, some versions of qemu-user can run little-endian
   PPC64 but lack some instructions required by the Debian arch.
+* powerpcspe has no classic FPU but a bunch of other instructions.
 * armhf uses same syscall ABI as armel.
 
 One way to ascertain required support is trying to run an unprivileged
@@ -53,12 +54,13 @@ an exit code other than 0.
 Missing Debian architectures
 ============================
 
-* hurd-*: how do you even do syscalls there?!?  RTFSing glibc, I see it's
-  something bizarre: _exit() requests some server to terminate the process
-  then goes into an endless loop of dividing 1/0.
+* hurd-*: it has no proper syscalls, the equivalent being complicated RPC
+  calls implemented inside glibc.  This is similar to Windows where the real
+  syscalls (NT) are undocumented and unstable while everyone is supposed to
+  link to "kernel" shared libraries.
+  Unfortunately for hurd, there's no cross toolchain in Debian, unlike mingw.
 * hppa: no machine to test, not even supported by qemu
 * ia64: no cross binutils
-* powerpcspe: no machine, debootstrap in qemu fails
 
 
 Resources
