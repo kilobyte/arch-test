@@ -1,3 +1,10 @@
+arch-test (0.5-1) unstable; urgency=medium
+
+  * New upstream release (+powerpcspe).
+    + don't detect SPE as powerpc
+
+ -- Adam Borowski <kilobyte@angband.pl>  Tue, 14 Jun 2016 03:32:08 +0200
+
 arch-test (0.4-1) unstable; urgency=medium
 
   * New upstream release (+alpha).
