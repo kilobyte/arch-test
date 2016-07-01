@@ -1,6 +1,6 @@
 ARCHS=amd64 x32 i386 \
 	win32 win64 \
-	mips mipsel mips64 mips64el \
+	mips mipsel mipsn32 mipsn32el mips64 mips64el \
 	illumos-amd64 \
 	kfreebsd-amd64 kfreebsd-i386 \
 	powerpc ppc64 ppc64el powerpcspe \
@@ -61,6 +61,14 @@ arch-test-mips: mips.s
 arch-test-mipsel: mips.s
 	$(MIPS)-as -32 -EL $^ -o mipsel.o
 	$(MIPS)-ld -melf32ltsmip -s mipsel.o -o $@
+
+arch-test-mipsn32: mipsn32.s
+	$(MIPS)-as -n32 -EB $^ -o mipsn32.o
+	$(MIPS)-ld -melf32btsmipn32 -s mipsn32.o -o $@
+
+arch-test-mipsn32el: mipsn32.s
+	$(MIPS)-as -n32 -EL $^ -o mipsn32el.o
+	$(MIPS)-ld -melf32ltsmipn32 -s mipsn32el.o -o $@
 
 arch-test-mips64: mips64.s
 	$(MIPS)-as -64 -EB $^ -o mips64.o

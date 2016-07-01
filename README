@@ -8,7 +8,7 @@ binaries without installing required libraries.
 
 Architectures detected by this version of arch-test are:
  * amd64, i386, x32
- * mips, mipsel, mips64, mips64el
+ * mips, mipsel, mipsn32, mipsn32el, mips64, mips64el
  * arm, armel, armhf, arm64
  * powerpc, ppc64, ppc64el, powerpcspe
  * m68k
