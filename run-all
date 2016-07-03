@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Verbose script for debug purposes.
+ulimit -c 0
 
 for x in arch-test-*
   do
