@@ -1,11 +1,12 @@
 ARCHS=amd64 x32 i386 \
 	win32 win64 \
-	mips mipsel mips64 mips64el \
+	mips mipsel mipsn32 mipsn32el mips64 mips64el \
 	illumos-amd64 \
 	kfreebsd-amd64 kfreebsd-i386 \
 	powerpc ppc64 ppc64el powerpcspe \
 	s390x \
-	arm64 arm armel armhf \
+	arm64 arm64ilp32 \
+	arm armel armhf \
 	sh4 \
 	m68k \
 	sparc sparc64 \
@@ -62,6 +63,14 @@ arch-test-mipsel: mips.s
 	$(MIPS)-as -32 -EL $^ -o mipsel.o
 	$(MIPS)-ld -melf32ltsmip -s mipsel.o -o $@
 
+arch-test-mipsn32: mipsn32.s
+	$(MIPS)-as -n32 -EB $^ -o mipsn32.o
+	$(MIPS)-ld -melf32btsmipn32 -s mipsn32.o -o $@
+
+arch-test-mipsn32el: mipsn32.s
+	$(MIPS)-as -n32 -EL $^ -o mipsn32el.o
+	$(MIPS)-ld -melf32ltsmipn32 -s mipsn32el.o -o $@
+
 arch-test-mips64: mips64.s
 	$(MIPS)-as -64 -EB $^ -o mips64.o
 	$(MIPS)-ld -melf64btsmip -s mips64.o -o $@
@@ -107,6 +116,10 @@ arch-test-s390x: s390x.s
 arch-test-arm64: arm64.s
 	aarch64-linux-gnu-as $^ -o arm64.o
 	aarch64-linux-gnu-ld -s arm64.o -o $@
+
+arch-test-arm64ilp32: arm64.s
+	aarch64-linux-gnu-as -mabi=ilp32 $^ -o arm64ilp32.o
+	aarch64-linux-gnu-ld -maarch64linux32 -s arm64ilp32.o -o $@
 
 arch-test-arm: arm.oabi.s
 	$(ARM)-as $^ -o arm.o
