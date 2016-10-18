@@ -3,10 +3,10 @@
 arch-test \- detect architectures your kernel can run binaries of
 .SH SYNOPSIS
 .TP
-.B arch-test
+.BR arch-test " [" -n ]
 enumerates the architectures
 .TP
-.BI arch-test " <arch>"
+.BR arch-test " [" -n ] " " "\fI<arch>\fR"
 tests a single arch
 .SH DESCRIPTION
 When called without an argument, \fBarch-test\fR outputs the list of
@@ -24,6 +24,10 @@ An architecture is considered runnable only if your kernel can run
 armhf) or using \fBbrandelf\fR on binaries you'd want to run (FreeBSD
 emulation of Linux).  Also, as Debian requires 686 on i386 as of the stretch
 release, 686 support is checked for.
+
+If \fB-n\fR is specified, \fBarch-test\fR will try to disable known
+emulators (currently \fBqemu\fR and \fBwine\fR).  Note that a whole-machine
+emulator appears to be native as far as the kernel is concerned.
 
 When called with an arch name as an argument, \fBarch-test\fR tests the
 specified architecture.  A human-friendly message will be printed, and the
