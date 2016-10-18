@@ -24,6 +24,7 @@ Vcs-Browser: https://github.com/kilobyte/arch-test/tree/debian
 
 Package: arch-test
 Architecture: all
+Multi-Arch: foreign
 Depends: ${misc:Depends}
 Description: detect architectures supported by your machine/kernel
  This package lets you enumerate architectures that your kernel can run.
