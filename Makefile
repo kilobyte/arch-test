@@ -5,7 +5,8 @@ ARCHS=amd64 x32 i386 \
 	kfreebsd-amd64 kfreebsd-i386 \
 	powerpc ppc64 ppc64el powerpcspe \
 	s390x \
-	arm64 arm armel armhf \
+	arm64 arm64ilp32 \
+	arm armel armhf \
 	sh4 \
 	m68k \
 	sparc sparc64 \
@@ -115,6 +116,10 @@ arch-test-s390x: s390x.s
 arch-test-arm64: arm64.s
 	aarch64-linux-gnu-as $^ -o arm64.o
 	aarch64-linux-gnu-ld -s arm64.o -o $@
+
+arch-test-arm64ilp32: arm64.s
+	aarch64-linux-gnu-as -mabi=ilp32 $^ -o arm64ilp32.o
+	aarch64-linux-gnu-ld -maarch64linux32 -s arm64ilp32.o -o $@
 
 arch-test-arm: arm.oabi.s
 	$(ARM)-as $^ -o arm.o
