@@ -1,3 +1,10 @@
+arch-test (0.6-1) unstable; urgency=medium
+
+  * New upstream release (+mipsn32, mipsn32el, arm64ilp32).
+    + new option "-n" to look for native support only
+
+ -- Adam Borowski <kilobyte@angband.pl>  Tue, 18 Oct 2016 04:12:27 +0200
+
 arch-test (0.5-1) unstable; urgency=medium
 
   * New upstream release (+powerpcspe).
