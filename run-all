@@ -6,7 +6,7 @@ ulimit -c 0
 for x in arch-test-*
   do
     arch=${x##arch-test-}
-    printf '\e[33m%s\e[0m\n' "$x"
+    printf '\e[33m%s\e[0m\n' "$arch"
     MSG=`"./$x" 2>/dev/null|tr -d '\r'`
     RET=$?
     if [ $RET -eq 0 -a "x$MSG" = "xok" ]
