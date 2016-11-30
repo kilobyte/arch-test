@@ -19,6 +19,7 @@ Architectures detected by this version of arch-test are:
  * win32, win64
  * kfreebsd-amd64, kfreebsd-i386
  * alpha
+ * hppa
 
 
 Detection quirks
@@ -64,7 +65,6 @@ Missing Debian architectures
   syscalls (NT) are undocumented and unstable while everyone is supposed to
   link to "kernel" shared libraries.
   Unfortunately for hurd, there's no cross toolchain in Debian, unlike mingw.
-* hppa: no machine to test, not even supported by qemu
 * ia64: no cross binutils
 
 
