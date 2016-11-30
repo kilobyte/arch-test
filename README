@@ -29,6 +29,11 @@ That's not a bug -- it can't run _unmodified_ i386 binaries.  There's a
 tool "brandelf" that sets field 0x7 in the ELF header, required by FreeBSD
 but not set by Linux nor Solaris toolchains.
 
+Emulation of the SWP instruction on at least Odroid-U2 vendor kernel is
+broken, subtly breaking armel processes.  They mostly work but once there's
+lock contention, shit will happen.  Thus, it's debatable whether to mark
+armel as unsupported there -- I do so only because it's easier for me.
+
 
 Adding new archs
 ================
