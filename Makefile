@@ -10,7 +10,9 @@ ARCHS=amd64 x32 i386 \
 	sh4 \
 	m68k \
 	sparc sparc64 \
-	alpha
+	alpha \
+	hppa \
+
 X86=x86_64-linux-gnu
 MIPS=mips-linux-gnu
 POWERPC=powerpc-linux-gnu
@@ -152,3 +154,7 @@ arch-test-sparc: sparc.s
 arch-test-alpha: alpha.s
 	alpha-linux-gnu-as $^ -o alpha.o
 	alpha-linux-gnu-ld -s alpha.o -o $@
+
+arch-test-hppa: hppa.s
+	hppa-linux-gnu-as $^ -o hppa.o
+	hppa-linux-gnu-ld -s hppa.o -o $@
