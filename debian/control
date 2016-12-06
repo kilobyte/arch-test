@@ -14,6 +14,7 @@ Build-Depends: debhelper (>=9),
  binutils-sh4-linux-gnu [!sh4],
  binutils-sparc64-linux-gnu [!sparc64 !sparc],
  binutils-alpha-linux-gnu [!alpha],
+ binutils-hppa-linux-gnu [!hppa],
  mingw-w64
 # doko, others: if you want to drop some crap architecture from binutils, feel
 # free to shout at me or NMU arch-test to remove it yourself.  It is enough to
@@ -36,7 +37,7 @@ Description: detect architectures supported by your machine/kernel
  Architectures detected by this version of arch-test are:
   * amd64, i386, x32
   * mips, mipsel, mips64, mips64el
-  * arm, armel, armhf, arm64
+  * arm, armel, armhf, arm64, arm64ilp32
   * powerpc, ppc64, ppc64el, powerpcspe
   * m68k
   * sh4
@@ -46,3 +47,4 @@ Description: detect architectures supported by your machine/kernel
   * win32, win64
   * kfreebsd-amd64, kfreebsd-i386
   * alpha
+  * hppa

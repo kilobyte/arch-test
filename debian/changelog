@@ -1,3 +1,11 @@
+arch-test (0.7-1) unstable; urgency=medium
+
+  * New upstream release (+hppa).
+    + check whether SWP works on armel
+  * Multi-Arch: foreign.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Tue, 06 Dec 2016 05:08:22 +0100
+
 arch-test (0.6-1) unstable; urgency=medium
 
   * New upstream release (+mipsn32, mipsn32el, arm64ilp32).
