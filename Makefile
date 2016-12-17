@@ -127,7 +127,7 @@ arch-test-arm: arm.oabi.s
 	$(ARM)-as $^ -o arm.o
 	$(ARM)-ld -s arm.o -o $@
 
-arch-test-armel: arm.eabi.s
+arch-test-armel: armel.s
 	$(ARM)-as $^ -o armel.o
 	$(ARM)-ld -s armel.o -o $@
 
