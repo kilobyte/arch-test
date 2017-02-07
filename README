@@ -74,7 +74,7 @@ Non-Debian architectures
 While currently arch-test is heavily biased towards Debian, there is no
 reason for it to stay so.  I would need to compile the assembler from source
 during the build, but that's doable.  All that's needed is motivation (ie,
-tell me if you have an use) and access to test machines.
+tell me if you have a use) and access to test machines.
 
 
 Resources
