@@ -52,11 +52,13 @@ arch-test-i386: i386.s
 	$(X86)-as --32 $^ -o i386.o
 	$(X86)-ld -melf_i386 -s i386.o -o $@
 
-arch-test-win32: generic.c
-	i686-w64-mingw32-gcc $^ -s -o $@
+arch-test-win32: win32.s
+	i686-w64-mingw32-as $^ -o win32.o
+	i686-w64-mingw32-ld -s win32.o -lkernel32 -o $@
 
-arch-test-win64: generic.c
-	x86_64-w64-mingw32-gcc $^ -s -o $@
+arch-test-win64: win64.s
+	x86_64-w64-mingw32-as $^ -o win64.o
+	x86_64-w64-mingw32-ld -s win64.o -lkernel32 -o $@
 
 arch-test-mips: mips.s
 	$(MIPS)-as -32 -EB $^ -o mips.o
