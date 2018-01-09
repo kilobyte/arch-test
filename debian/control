@@ -16,7 +16,8 @@ Build-Depends: debhelper (>=11),
  binutils-alpha-linux-gnu [!alpha],
  binutils-hppa-linux-gnu [!hppa],
  binutils-ia64-linux-gnu [!ia64],
- mingw-w64
+ binutils-mingw-w64-i686, mingw-w64-i686-dev,
+ binutils-mingw-w64-x86-64, mingw-w64-x86-64-dev,
 # doko, others: if you want to drop some crap architecture from binutils, feel
 # free to shout at me or NMU arch-test to remove it yourself.  It is enough to
 # remove from Build-Depends, configure will do the right thing.

@@ -1,3 +1,10 @@
+arch-test (0.9-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Build-Depend only on Windows binutils and headers.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Wed, 10 Jan 2018 00:55:03 +0100
+
 arch-test (0.8-1) unstable; urgency=medium
 
   * New upstream release (+ia64).
