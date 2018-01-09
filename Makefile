@@ -12,6 +12,7 @@ ARCHS=amd64 x32 i386 \
 	sparc sparc64 \
 	alpha \
 	hppa \
+	ia64 \
 
 X86=x86_64-linux-gnu
 MIPS=mips-linux-gnu
@@ -160,3 +161,7 @@ arch-test-alpha: alpha.s
 arch-test-hppa: hppa.s
 	hppa-linux-gnu-as $^ -o hppa.o
 	hppa-linux-gnu-ld -s hppa.o -o $@
+
+arch-test-ia64: ia64.s
+	ia64-linux-gnu-as $^ -o ia64.o
+	ia64-linux-gnu-ld -s ia64.o -o $@
