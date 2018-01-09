@@ -1,3 +1,12 @@
+arch-test (0.8-1) unstable; urgency=medium
+
+  * New upstream release (+ia64).
+  * dh 11.
+  * R³.
+  * Override lintian warning for non-hardened Windows binary.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Tue, 09 Jan 2018 14:27:24 +0100
+
 arch-test (0.7-1) unstable; urgency=medium
 
   * New upstream release (+hppa).

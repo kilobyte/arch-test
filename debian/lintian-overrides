@@ -5,3 +5,5 @@ arch-test binary: arch-independent-package-contains-binary-or-object
 arch-test binary: statically-linked-binary
 # That's PE not ELF, indeed.
 arch-test binary: executable-not-elf-or-script
+# Nothing to exploit; we want as few moving parts as possible.
+arch-test binary: portable-executable-missing-security-features
