@@ -88,11 +88,13 @@ arch-test-illumos-amd64: solaris-amd64.s
 arch-test-kfreebsd-amd64: solaris-amd64.s
 	$(X86)-as --64 $^ -o kfreebsd-amd64.o
 	$(X86)-ld -melf_x86_64 -s kfreebsd-amd64.o -o $@
+	# FreeBSD relies on "branding" of ELF files.
 	printf '\t'|dd of=$@ bs=1 count=1 seek=7 conv=notrunc
 
 arch-test-kfreebsd-i386: kfreebsd-i386.s
 	$(X86)-as --32 $^ -o kfreebsd-i386.o
 	$(X86)-ld -melf_i386 -s kfreebsd-i386.o -o $@
+	# FreeBSD relies on "branding" of ELF files.
 	printf '\t'|dd of=$@ bs=1 count=1 seek=7 conv=notrunc
 
 arch-test-powerpc: powerpc.s
