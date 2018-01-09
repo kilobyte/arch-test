@@ -12,6 +12,7 @@ ARCHS=amd64 x32 i386 \
 	sparc sparc64 \
 	alpha \
 	hppa \
+	ia64 \
 
 X86=x86_64-linux-gnu
 MIPS=mips-linux-gnu
@@ -88,11 +89,13 @@ arch-test-illumos-amd64: solaris-amd64.s
 arch-test-kfreebsd-amd64: solaris-amd64.s
 	$(X86)-as --64 $^ -o kfreebsd-amd64.o
 	$(X86)-ld -melf_x86_64 -s kfreebsd-amd64.o -o $@
+	# FreeBSD relies on "branding" of ELF files.
 	printf '\t'|dd of=$@ bs=1 count=1 seek=7 conv=notrunc
 
 arch-test-kfreebsd-i386: kfreebsd-i386.s
 	$(X86)-as --32 $^ -o kfreebsd-i386.o
 	$(X86)-ld -melf_i386 -s kfreebsd-i386.o -o $@
+	# FreeBSD relies on "branding" of ELF files.
 	printf '\t'|dd of=$@ bs=1 count=1 seek=7 conv=notrunc
 
 arch-test-powerpc: powerpc.s
@@ -127,7 +130,7 @@ arch-test-arm: arm.oabi.s
 	$(ARM)-as $^ -o arm.o
 	$(ARM)-ld -s arm.o -o $@
 
-arch-test-armel: arm.eabi.s
+arch-test-armel: armel.s
 	$(ARM)-as $^ -o armel.o
 	$(ARM)-ld -s armel.o -o $@
 
@@ -158,3 +161,7 @@ arch-test-alpha: alpha.s
 arch-test-hppa: hppa.s
 	hppa-linux-gnu-as $^ -o hppa.o
 	hppa-linux-gnu-ld -s hppa.o -o $@
+
+arch-test-ia64: ia64.s
+	ia64-linux-gnu-as $^ -o ia64.o
+	ia64-linux-gnu-ld -s ia64.o -o $@

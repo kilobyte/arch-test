@@ -20,6 +20,7 @@ Architectures detected by this version of arch-test are:
  * kfreebsd-amd64, kfreebsd-i386
  * alpha
  * hppa
+ * ia64
 
 
 Detection quirks
@@ -65,7 +66,6 @@ Missing Debian architectures
   syscalls (NT) are undocumented and unstable while everyone is supposed to
   link to "kernel" shared libraries.
   Unfortunately for hurd, there's no cross toolchain in Debian, unlike mingw.
-* ia64: no cross binutils
 
 
 Non-Debian architectures
@@ -74,7 +74,7 @@ Non-Debian architectures
 While currently arch-test is heavily biased towards Debian, there is no
 reason for it to stay so.  I would need to compile the assembler from source
 during the build, but that's doable.  All that's needed is motivation (ie,
-tell me if you have an use) and access to test machines.
+tell me if you have a use) and access to test machines.
 
 
 Resources
