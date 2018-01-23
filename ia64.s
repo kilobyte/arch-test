@@ -9,7 +9,7 @@ _start:
 	movl	out1=msg
 	mov	out2=3
 	mov	r15=1027
-	break.i	0x100000		// syscall: _exit(out0, out1, out2)
+	break.i	0x100000		// syscall: write(out0, out1, out2)
 
 	mov	out0=0
 	mov	r15=1025
