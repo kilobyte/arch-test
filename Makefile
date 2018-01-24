@@ -89,6 +89,7 @@ arch-test-illumos-amd64: solaris-amd64.s
 	$(X86)-ld -melf_x86_64 -s illumos-amd64.o -o $@
 
 arch-test-kfreebsd-amd64: solaris-amd64.s
+	# same ABI as Solaris, save for branding.
 	$(X86)-as --64 $^ -o kfreebsd-amd64.o
 	$(X86)-ld -melf_x86_64 -s kfreebsd-amd64.o -o $@
 	# FreeBSD relies on "branding" of ELF files.
