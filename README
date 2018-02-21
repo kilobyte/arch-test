@@ -21,6 +21,7 @@ Architectures detected by this version of arch-test are:
  * alpha
  * hppa
  * ia64
+ * riscv64
 
 
 Detection quirks
