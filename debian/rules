@@ -4,7 +4,7 @@
 
 
 %:
-	dh $@ --parallel
+	dh $@
 
 override_dh_auto_install:
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/arch-test/ PREFIX=/usr
