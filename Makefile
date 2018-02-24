@@ -13,6 +13,7 @@ ARCHS=amd64 x32 i386 \
 	alpha \
 	hppa \
 	ia64 \
+	riscv64 \
 
 X86=x86_64-linux-gnu
 MIPS=mips-linux-gnu
@@ -88,6 +89,7 @@ arch-test-illumos-amd64: solaris-amd64.s
 	$(X86)-as --64 $^ -o illumos-amd64.o
 	$(X86)-ld -melf_x86_64 -s illumos-amd64.o -o $@
 
+# same ABI as Solaris, save for branding.
 arch-test-kfreebsd-amd64: solaris-amd64.s
 	$(X86)-as --64 $^ -o kfreebsd-amd64.o
 	$(X86)-ld -melf_x86_64 -s kfreebsd-amd64.o -o $@
@@ -167,3 +169,7 @@ arch-test-hppa: hppa.s
 arch-test-ia64: ia64.s
 	ia64-linux-gnu-as $^ -o ia64.o
 	ia64-linux-gnu-ld -s ia64.o -o $@
+
+arch-test-riscv64: riscv64.s
+	riscv64-linux-gnu-as $^ -o riscv64.o
+	riscv64-linux-gnu-ld -s riscv64.o -o $@
