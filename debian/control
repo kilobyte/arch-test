@@ -52,3 +52,4 @@ Description: detect architectures supported by your machine/kernel
   * alpha
   * hppa
   * ia64
+  * riscv64
