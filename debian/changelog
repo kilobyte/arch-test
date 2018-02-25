@@ -1,3 +1,11 @@
+arch-test (0.10-1) unstable; urgency=medium
+
+  * New upstream release (+riscv64).
+  * Actually add R³.
+  * watch: ignore debian tags.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Sun, 25 Feb 2018 02:43:03 +0100
+
 arch-test (0.9-1) unstable; urgency=medium
 
   * New upstream release.
