@@ -1,3 +1,10 @@
+arch-test (0.11-1) unstable; urgency=medium
+
+  * New upstream release (-c <chroot>).
+  * Build-Conflict against a problematic version of binutils-mingw.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Mon, 02 Apr 2018 20:25:21 +0200
+
 arch-test (0.10-1) unstable; urgency=medium
 
   * New upstream release (+riscv64).
