@@ -6,14 +6,37 @@ ulimit -c 0
 
 HELPERS=$0-
 
-if [ "x$1" = "x-n" ]
+if [ "x$1" = "x-n" -o "x$1" = "x--native" ]
   then
     export QEMU_VERSION=meow WINEPREFIX=/dev/null
     shift
 fi
 
+if [ "x$1" = "x-c" -o "x$1" = "x--chroot" ]
+  then
+    shift
+    CHROOT="$1"
+    shift
+    if [ -z "$CHROOT" ]
+      then
+        echo >&2 "$0: -c requires path to the chroot (possibly '.')."; exit 1
+    fi
+    if [ ! -d "$CHROOT" ]
+      then
+        echo >&2 "$0: chroot '$CHROOT' is not a directory."; exit 1
+    fi
+    if [ "x$(id -u)" != "x0" ]
+      then
+        echo >&2 "$0: chrooting requires root."; exit 1
+    fi
+    if [ -z "$1" ]
+      then
+        echo >&2 "$0: -c works only with a single-arch query."; exit 1
+    fi
+fi
+
 if [ $# -gt 1 ]
-  then echo >&2 'Usage: "arch-test [-n]" or "arch-test [-n] <arch>".'; exit 1
+  then echo >&2 'Usage: "arch-test [-n]" or "arch-test [-n|-c <chroot>] <arch>".'; exit 1
 fi
 
 if [ $# -eq 1 ]
@@ -22,7 +45,15 @@ if [ $# -eq 1 ]
       then echo "I don't know how to detect arch '$1', sorry."; exit 2
     fi
 
-    MSG=`"$HELPERS$1" 2>/dev/null`
+    if [ -n "$CHROOT" ]
+      then
+        HELPER_F="$(basename $HELPERS$1)"
+        cp -p "$HELPERS$1" "$CHROOT/$HELPER_F"
+        trap "rm '$CHROOT/$HELPER_F'" 0
+        MSG=`chroot "$CHROOT" /"$HELPER_F" 2>/dev/null`
+      else
+        MSG=`$HELPERS$1 2>/dev/null`
+    fi
     if [ $? -eq 0 -a "x$MSG" = "xok" ]
       then echo "$1: ok"; exit 0
       else echo "$1: not supported on this machine/kernel"; exit 1

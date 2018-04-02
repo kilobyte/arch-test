@@ -6,7 +6,7 @@ arch-test \- detect architectures your kernel can run binaries of
 .BR arch-test " [" -n ]
 enumerates the architectures
 .TP
-.BR arch-test " [" -n ] " " "\fI<arch>\fR"
+.BR arch-test " [" -n ] " " [ -c " " "\fI<chroot>\fR" ] " " "\fI<arch>\fR"
 tests a single arch
 .SH DESCRIPTION
 When called without an argument, \fBarch-test\fR outputs the list of
@@ -28,6 +28,10 @@ release, 686 support is checked for.
 If \fB-n\fR is specified, \fBarch-test\fR will try to disable known
 emulators (currently \fBqemu\fR and \fBwine\fR).  Note that a whole-machine
 emulator appears to be native as far as the kernel is concerned.
+
+With \fB-c\fR \fI<chroot>\fR, the test is done inside a given chroot (note
+that binfmt requires an interpreter to live \fIinside\fR the chroot); this
+is not needed with \fB-n\fR.   Root privileges are required here.
 
 When called with an arch name as an argument, \fBarch-test\fR tests the
 specified architecture.  A human-friendly message will be printed, and the
