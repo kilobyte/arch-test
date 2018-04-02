@@ -19,19 +19,19 @@ if [ "x$1" = "x-c" -o "x$1" = "x--chroot" ]
     shift
     if [ -z "$CHROOT" ]
       then
-        echo >&2 "$0: -c requires path to the chroot (possibly '.')."; exit 1
+        echo >&2 "$0: -c requires path to the chroot (possibly '.')."; exit 2
     fi
     if [ ! -d "$CHROOT" ]
       then
-        echo >&2 "$0: chroot '$CHROOT' is not a directory."; exit 1
+        echo >&2 "$0: chroot '$CHROOT' is not a directory."; exit 2
     fi
     if [ "x$(id -u)" != "x0" ]
       then
-        echo >&2 "$0: chrooting requires root."; exit 1
+        echo >&2 "$0: chrooting requires root."; exit 2
     fi
     if [ -z "$1" ]
       then
-        echo >&2 "$0: -c works only with a single-arch query."; exit 1
+        echo >&2 "$0: -c works only with a single-arch query."; exit 2
     fi
 fi
 
