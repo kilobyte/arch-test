@@ -26,7 +26,6 @@ Standards-Version: 4.1.3
 Rules-Requires-Root: no
 Vcs-Git: https://github.com/kilobyte/arch-test.git -b debian
 Vcs-Browser: https://github.com/kilobyte/arch-test/tree/debian
-Build-Conflicts: binutils-mingw-w64-i686 (=2.29.1-13+8)
 
 Package: arch-test
 Architecture: all
