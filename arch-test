@@ -6,6 +6,12 @@ ulimit -c 0
 
 HELPERS=$0-
 
+if [ "x$1" = "x--version" ]
+  then
+    printf 'arch-test %s\n' "$(git describe)"
+    exit 0
+fi
+
 if [ "x$1" = "x-n" -o "x$1" = "x--native" ]
   then
     export QEMU_VERSION=meow WINEPREFIX=/dev/null
