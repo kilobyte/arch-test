@@ -32,6 +32,7 @@ distclean: clean
 DESTDIR=
 PREFIX=/usr/local
 install: all
+	mkdir -p $(DESTDIR)$(PREFIX)/bin
 	mkdir -p $(DESTDIR)$(PREFIX)/lib/arch-test/
 	sed -e "s|^HELPERS.*|HELPERS=$(PREFIX)/lib/arch-test/|" \
 		<arch-test >$(DESTDIR)$(PREFIX)/bin/arch-test
