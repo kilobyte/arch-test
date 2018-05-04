@@ -1,3 +1,9 @@
+arch-test (0.12-2) unstable; urgency=medium
+
+  * Fix --version when built without git available.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Sat, 05 May 2018 01:15:24 +0200
+
 arch-test (0.12-1) unstable; urgency=medium
 
   * New upstream release.
