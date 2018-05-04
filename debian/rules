@@ -7,4 +7,5 @@
 	dh $@
 
 override_dh_auto_install:
-	$(MAKE) install DESTDIR=$(CURDIR)/debian/arch-test/ PREFIX=/usr
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/arch-test/ PREFIX=/usr \
+	    VERSION=v$(shell dpkg-parsechangelog -S Version|cut -d- -f1)
