@@ -1,0 +1,4 @@
+#!/bin/sh
+# If we're capable of executing dpkg, we can run its arch (qemu or not).
+
+arch-test `dpkg --print-architecture`
