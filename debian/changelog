@@ -1,3 +1,11 @@
+arch-test (0.12-1) unstable; urgency=medium
+
+  * New upstream release.
+    + add --version (Closes: #897615)
+  * A simple autopkgtest: check whether dpkg's architecture is executable.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Fri, 04 May 2018 23:38:10 +0200
+
 arch-test (0.11-1) unstable; urgency=medium
 
   * New upstream release (-c <chroot>).
