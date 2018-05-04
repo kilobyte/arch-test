@@ -6,14 +6,16 @@ ulimit -c 0
 
 HELPERS=$0-
 
-if [ "x$1" = "x-n" -o "x$1" = "x--native" ]
-  then
+case "$1" in
+  --version)
+    printf 'arch-test %s\n' "$(git describe)"
+    exit 0
+    ;;
+  -n|--native)
     export QEMU_VERSION=meow WINEPREFIX=/dev/null
     shift
-fi
-
-if [ "x$1" = "x-c" -o "x$1" = "x--chroot" ]
-  then
+    ;;
+  -c|--chroot)
     shift
     CHROOT="$1"
     shift
@@ -33,7 +35,11 @@ if [ "x$1" = "x-c" -o "x$1" = "x--chroot" ]
       then
         echo >&2 "$0: -c works only with a single-arch query."; exit 2
     fi
-fi
+    ;;
+  -*)
+    echo >&2 "$0: unknown option '$1'."; exit 2
+    ;;
+esac
 
 if [ $# -gt 1 ]
   then echo >&2 'Usage: "arch-test [-n]" or "arch-test [-n|-c <chroot>] <arch>".'; exit 1

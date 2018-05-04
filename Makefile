@@ -1,3 +1,4 @@
+VERSION=$(shell git describe)
 ARCHS=amd64 x32 i386 \
 	win32 win64 \
 	mips mipsel mipsn32 mipsn32el mips64 mips64el \
@@ -32,8 +33,9 @@ distclean: clean
 DESTDIR=
 PREFIX=/usr/local
 install: all
+	mkdir -p $(DESTDIR)$(PREFIX)/bin
 	mkdir -p $(DESTDIR)$(PREFIX)/lib/arch-test/
-	sed -e "s|^HELPERS.*|HELPERS=$(PREFIX)/lib/arch-test/|" \
+	sed -e "s|^HELPERS.*|HELPERS=$(PREFIX)/lib/arch-test/|;s&..git describe.&$(VERSION)&" \
 		<arch-test >$(DESTDIR)$(PREFIX)/bin/arch-test
 	chmod a+x $(DESTDIR)$(PREFIX)/bin/arch-test
 	for x in $(ARCHS); do cp -p arch-test-$$x \
