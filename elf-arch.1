@@ -1,0 +1,30 @@
+.TH elf-arch 1
+.SH NAME
+elf-arch \- recognize architecture of an ELF executable/shlib
+.SH SYNOPSIS
+.TP
+.BI "elf-arch " <file>
+says the arch of given binary
+.TP
+.BR elf-arch " " -a " " \fI<arch> " " \fI<file>
+checks if \fI<file>\fR matches ABI \fI<arch>\fR
+.SH DESCRIPTION
+\fBelf-arch\fR detects the kernel ABI needed to run a given binary, and
+prints its Debian arch name.  This doesn't necessarily mean the arch can
+actually run that program/library: markings available in the ELF header are
+pretty much restricted to just word width, endianness and instruction set
+family.  Architectures can also differ by the set of syscalls they use
+(although these can usually be mixed) or required CPU instructions; you
+can't generally distinguish between those other than trying to run the
+program.
+
+The difference usually shows in the kernel refusing to run a binary vs
+executing it and crashing at runtime.
+
+Thus, as far as ELF markings are concerned, there's often a set of Debian
+architectures which are aliases for the same kernel arch.
+.SS "\fB-a\fR" \fI<arch>\fR
+With this option, elf-arch instead of printing the detected architecture
+will check if \fI<arch>\fR matches one of aliases for the file, and return
+an exit code: 0 if there's a plausible match, non-zero if the given arch
+won't even try executing that file.
