@@ -1,6 +1,13 @@
 #!/usr/bin/perl -w
 
-!$#ARGV or die "Usage: $0 <file>\n";
+my $a;
+if ($#ARGV==2 && $ARGV[0] eq '-a')
+{
+    shift;
+    $a=shift
+}
+
+!$#ARGV or die "Usage: $0 [-a] <file>\n";
 open F, '<', $ARGV[0] or die "$0: can't read $ARGV[0]: $!\n";
 my $header;
 my $hlen = sysread F, $header, 52;
@@ -96,16 +103,21 @@ sub pe()
     return $pe_arch{$_}//'pe-unknown';
 }
 
-if (unpack('N', $header)==0x7f454c46)
-{
-    print elf(), "\n";
-    exit;
-}
+my $ea = (unpack('N', $header)==0x7f454c46) ? elf :
+         (substr($header,0,2) eq 'MZ') ? pe :
+         "invalid";
 
-if (substr($header,0,2) eq 'MZ')
-{
-    print pe(), "\n";
-    exit;
-}
+defined($a) or exit print "$ea\n";
 
-print "invalid\n";
+my %aliases=(
+    'arm' => ['armel', 'armhf'],
+    'powerpc' => ['powerpcspe'],
+    'i386' => ['hurd-i386'], # fixme: Hurd can be distinguished by deep
+                             # inspection of "note" section inside ELF.
+    'amd64' => ['illumos-amd64'], # not compatible but unmarked
+    'sh4' => ['sh3'],
+);
+
+exit 0 if $ea eq $a;
+exit 1 unless defined $aliases{$ea};
+exit !grep { $_ eq $a } @{$aliases{$ea}}
