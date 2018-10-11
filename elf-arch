@@ -1,0 +1,123 @@
+#!/usr/bin/perl -w
+
+my $a;
+if ($#ARGV==2 && $ARGV[0] eq '-a')
+{
+    shift;
+    $a=shift
+}
+
+!$#ARGV or die "Usage: $0 [-a] <file>\n";
+open F, '<', $ARGV[0] or die "$0: can't read $ARGV[0]: $!\n";
+my $header;
+my $hlen = sysread F, $header, 52;
+defined $hlen or die "$0: can't read $ARGV[0]: $!\n";
+$hlen==52 or die "$0: $ARGV[0] not an ELF: only $hlen bytes long\n";
+
+sub elf()
+{
+    my ($word, $end, $version, $os, $abi, $isa) = unpack('xxxxCCCCCxxxxxxxxxv', $header);
+    $version==1 or return "invalid";
+    my $id=sprintf("%d:%s:%x", 16*(1<<$word), substr("-lb",$end,1), $isa);
+    my $wo32=substr("xVN",$end,1);
+    my %elf_arch=(
+        "64:l:9026" => "alpha",
+        "64:l:3e" => "amd64",
+        "32:l:28" => "arm",
+        "64:l:b7" => "arm64",
+        "32:l:b7" => "arm64ilp32",
+        "32:b:f00" => "hppa",
+        "32:l:3" => "i386",
+        "64:l:32" => "ia64",
+        "32:b:400" => "m68k",
+        "32:b:800" => "mips",
+        "64:b:800" => "mips64",
+        "64:l:8" => "mips64el",
+        "32:l:8" => "mipsel",
+        "32:b:800" => "mips",
+        "32:l:71" => "nios2",
+        "32:b:5c00" => "or1k",
+        "32:b:1400" => "powerpc",
+        "64:b:1500" => "ppc64",
+        "64:l:15" => "ppc64el",
+        "64:l:f3" => "riscv64",
+        "64:b:1600" => "s390x",
+        "32:l:2a" => "sh4",
+        "32:b:200" => "sparc",
+        "64:b:2b00" => "sparc64",
+        "32:l:3e" => "x32",
+    );
+    $_=$elf_arch{$id}//"unknown";
+    s/mips/mipsn32/ if /^mips/ && $word==1 && (unpack("x36$wo32",$header)&0x20);
+    if ($os==9)
+        { $_="kfreebsd-$_" }
+    elsif ($os==4)
+        { $_="hurd-$_" }
+    elsif ($os && $os!=3) # Linux is 3 in theory but almost always 0
+        { return "unknown" };
+    $_
+}
+
+sub pe()
+{
+    sysseek F, 0x3c, 0;
+    $hlen = sysread F, $_, 4;
+    defined $hlen or return die "$0: can't read $ARGV[0]: $!\n";
+    $_=unpack 'V';
+    $_>0
+    and sysseek(F, $_, 0)
+    and sysread(F, $_, 4)==4
+    and $_ eq "PE\0\0"
+    and sysread(F, $_, 2)==2
+        or return 'invalid';
+    $_=unpack 'v';
+
+    my %pe_arch=(
+        0x0 => 'pe-universal',
+        0x1d3 => 'win-am33',
+	0x8664 => 'win64',
+	0x1c0 => 'win-arm',
+	0xaa64 => 'win-arm64',
+	0x1c4 => 'win-armnt', #	ARM Thumb-2 little endian
+	0xebc => 'ebc', # EFI byte code
+	0x14c => 'win32',
+	0x200 => 'win-ia64',
+	0x9041 => 'win-m32r',
+	0x266 => 'win-mips16',
+	0x366 => 'win-mipsfpu',
+	0x466 => 'win-mipsfpu16',
+	0x1f0 => 'win-powerpc',
+	0x1f1 => 'win-powerpcfp',
+	0x166 => 'win-r4000',
+	0x5032 => 'win-riscv32',
+	0x5064 => 'win-riscv64',
+	0x5128 => 'win-riscv128',
+	0x1a2 => 'win-sh3',
+	0x1a3 => 'win-sh3dsp',
+	0x1a6 => 'win-sh4',
+	0x1a8 => 'win-sh4',
+	0x1c2 => 'win-thumb',
+	0x169 => 'win-wcemipsv2',
+    );
+
+    return $pe_arch{$_}//'pe-unknown';
+}
+
+my $ea = (unpack('N', $header)==0x7f454c46) ? elf :
+         (substr($header,0,2) eq 'MZ') ? pe :
+         "invalid";
+
+defined($a) or exit print "$ea\n";
+
+my %aliases=(
+    'arm' => ['armel', 'armhf'],
+    'powerpc' => ['powerpcspe'],
+    'i386' => ['hurd-i386'], # fixme: Hurd can be distinguished by deep
+                             # inspection of "note" section inside ELF.
+    'amd64' => ['illumos-amd64'], # not compatible but unmarked
+    'sh4' => ['sh3'],
+);
+
+exit 0 if $ea eq $a;
+exit 1 unless defined $aliases{$ea};
+exit !grep { $_ eq $a } @{$aliases{$ea}}
