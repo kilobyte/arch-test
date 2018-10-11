@@ -1,3 +1,9 @@
+arch-test (0.13-1) unstable; urgency=medium
+
+  * New upstream release (adds "elf-arch").  Closes: #905959.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Thu, 11 Oct 2018 20:20:08 +0200
+
 arch-test (0.12-2) unstable; urgency=medium
 
   * Fix --version when built without git available.
