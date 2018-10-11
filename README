@@ -78,6 +78,16 @@ during the build, but that's doable.  All that's needed is motivation (ie,
 tell me if you have a use) and access to test machines.
 
 
+elf-arch
+========
+
+Another tool in this package answers "what arch this program/library is
+for?".  Alas, it is impossible to determine this accurately, and in many
+cases this program will give only a vague architecture family.  Known
+variants of such a family are thus considered "aliases", and you can query
+whether the given executable matches a set.
+
+
 Resources
 =========
 
