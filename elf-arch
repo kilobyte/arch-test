@@ -107,7 +107,7 @@ my $ea = (unpack('N', $header)==0x7f454c46) ? elf :
          (substr($header,0,2) eq 'MZ') ? pe :
          "invalid";
 
-defined($a) or exit print "$ea\n";
+defined($a) or print("$ea\n"), exit 0;
 
 my %aliases=(
     'arm' => ['armel', 'armhf'],
