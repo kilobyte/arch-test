@@ -20,8 +20,6 @@ sub elf()
     $version==1 or return "invalid";
     my $id=sprintf("%d:%s:%x", 16*(1<<$word), substr("-lb",$end,1), $isa);
     my $wo32=substr("xVN",$end,1);
-    # Technically, flags move only with word size, but Perl has no
-    # foreign-endianness format for 64-bit ints in pack, thus:
     my $flags_offset=0x18+(6<<$word);
     my $flags=unpack("x$flags_offset$wo32",$header);
     my %elf_arch=(
