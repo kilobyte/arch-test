@@ -10,9 +10,9 @@ if ($#ARGV==2 && $ARGV[0] eq '-a')
 !$#ARGV or die "Usage: $0 [-a] <file>\n";
 open F, '<', $ARGV[0] or die "$0: can't read $ARGV[0]: $!\n";
 my $header;
-my $hlen = sysread F, $header, 52;
+my $hlen = sysread F, $header, 56;
 defined $hlen or die "$0: can't read $ARGV[0]: $!\n";
-$hlen==52 or die "$0: $ARGV[0] not an ELF: only $hlen bytes long\n";
+$hlen==56 or die "$0: $ARGV[0] not an ELF: only $hlen bytes long\n";
 
 sub elf()
 {
@@ -20,6 +20,10 @@ sub elf()
     $version==1 or return "invalid";
     my $id=sprintf("%d:%s:%x", 16*(1<<$word), substr("-lb",$end,1), $isa);
     my $wo32=substr("xVN",$end,1);
+    # Technically, flags move only with word size, but Perl has no
+    # foreign-endianness format for 64-bit ints in pack, thus:
+    my $flags_offset=0x18+(6<<$word);
+    my $flags=unpack("x$flags_offset$wo32",$header);
     my %elf_arch=(
         "64:l:9026" => "alpha",
         "64:l:3e" => "amd64",
@@ -48,7 +52,16 @@ sub elf()
         "32:l:3e" => "x32",
     );
     $_=$elf_arch{$id}//"unknown";
-    s/mips/mipsn32/ if /^mips/ && $word==1 && (unpack("x36$wo32",$header)&0x20);
+    if (/^mips/)
+    {
+        my $rel=$flags>>28&0xf;
+        if ($rel==10)
+            { s/mips64/mips64r6/}
+        elsif ($rel==9)
+            { s/mips/mipsr6/}
+        elsif ($rel==2 && $word==1)
+            { s/mips/mipsn32/}
+    }
     if ($os==9)
         { $_="kfreebsd-$_" }
     elsif ($os==4)
@@ -107,7 +120,7 @@ my $ea = (unpack('N', $header)==0x7f454c46) ? elf :
          (substr($header,0,2) eq 'MZ') ? pe :
          "invalid";
 
-defined($a) or exit print "$ea\n";
+defined($a) or print("$ea\n"), exit 0;
 
 my %aliases=(
     'arm' => ['armel', 'armhf'],
