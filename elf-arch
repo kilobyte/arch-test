@@ -120,12 +120,15 @@ my $ea = (unpack('N', $header)==0x7f454c46) ? elf :
 
 defined($a) or print("$ea\n"), exit 0;
 
+exit 0 if $ea eq $a; # Try unmangled first.
+# These usually have unmarked binaries.
+$a=~s/^hurd-//;
+$a=~s/^illumos-//;
+$a=~s/^solaris-//;
+
 my %aliases=(
     'arm' => ['armel', 'armhf'],
     'powerpc' => ['powerpcspe'],
-    'i386' => ['hurd-i386'], # fixme: Hurd can be distinguished by deep
-                             # inspection of "note" section inside ELF.
-    'amd64' => ['illumos-amd64'], # not compatible but unmarked
     'sh4' => ['sh3'],
 );
 
