@@ -87,6 +87,9 @@ cases this program will give only a vague architecture family.  Known
 variants of such a family are thus considered "aliases", and you can query
 whether the given executable matches a set.
 
+Besides all archs known by arch-test, elf-arch also knows about hppa64 and
+mipsr6 variants.
+
 
 Resources
 =========
