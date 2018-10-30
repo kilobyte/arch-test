@@ -1,3 +1,12 @@
+arch-test (0.15-1) unstable; urgency=medium
+
+  * New upstream release.
+    + elf-arch knows about hppa64 (closes: #912369) and strips OS/libc
+      prefixes it can't properly detect, such as hurd- or musl-linux-
+      (closes: #911156, #912368).
+
+ -- Adam Borowski <kilobyte@angband.pl>  Wed, 31 Oct 2018 00:53:04 +0100
+
 arch-test (0.14-1) unstable; urgency=medium
 
   * New upstream release.
