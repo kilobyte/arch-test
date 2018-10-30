@@ -122,10 +122,12 @@ my $ea = (unpack('N', $header)==0x7f454c46) ? elf :
 defined($a) or print("$ea\n"), exit 0;
 
 exit 0 if $ea eq $a; # Try unmangled first.
+$a=~s/^musl-//;
 # These usually have unmarked binaries.
 $a=~s/^hurd-//;
 $a=~s/^illumos-//;
 $a=~s/^solaris-//;
+$a=~s/^linux-//;
 
 my %aliases=(
     'arm' => ['armel', 'armhf'],
