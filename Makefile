@@ -42,7 +42,7 @@ install: all
 		$(DESTDIR)$(PREFIX)/lib/arch-test/$$x;done
 	mkdir -p $(DESTDIR)$(PREFIX)/share/man/man1/
 	install -p *.1 $(DESTDIR)$(PREFIX)/share/man/man1/
-	install -p elf-test $(DESTDIR)$(PREFIX)/bin/
+	install -p elf-arch $(DESTDIR)$(PREFIX)/bin/
 
 arch-test-amd64: amd64.s
 	$(X86)-as --64 $^ -o amd64.o
