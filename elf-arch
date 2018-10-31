@@ -20,8 +20,6 @@ sub elf()
     $version==1 or return "invalid";
     my $id=sprintf("%d:%s:%x", 16*(1<<$word), substr("-lb",$end,1), $isa);
     my $wo32=substr("xVN",$end,1);
-    # Technically, flags move only with word size, but Perl has no
-    # foreign-endianness format for 64-bit ints in pack, thus:
     my $flags_offset=0x18+(6<<$word);
     my $flags=unpack("x$flags_offset$wo32",$header);
     my %elf_arch=(
@@ -31,6 +29,7 @@ sub elf()
         "64:l:b7" => "arm64",
         "32:l:b7" => "arm64ilp32",
         "32:b:f00" => "hppa",
+        "64:b:f00" => "hppa64",
         "32:l:3" => "i386",
         "64:l:32" => "ia64",
         "32:b:400" => "m68k",
@@ -122,12 +121,17 @@ my $ea = (unpack('N', $header)==0x7f454c46) ? elf :
 
 defined($a) or print("$ea\n"), exit 0;
 
+exit 0 if $ea eq $a; # Try unmangled first.
+$a=~s/^musl-//;
+# These usually have unmarked binaries.
+$a=~s/^hurd-//;
+$a=~s/^illumos-//;
+$a=~s/^solaris-//;
+$a=~s/^linux-//;
+
 my %aliases=(
     'arm' => ['armel', 'armhf'],
     'powerpc' => ['powerpcspe'],
-    'i386' => ['hurd-i386'], # fixme: Hurd can be distinguished by deep
-                             # inspection of "note" section inside ELF.
-    'amd64' => ['illumos-amd64'], # not compatible but unmarked
     'sh4' => ['sh3'],
 );
 
