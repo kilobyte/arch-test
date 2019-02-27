@@ -1,12 +1,9 @@
 .globl _start
 .data
-msg:	.ascii "nk\n" // first byte later amended to 'o'
+msg:	.ascii "ok\n"
 .text
 _start:
 	ldr	r1, =msg
-	mov	r0, #0x6f // 'o'
-	swpb	r0, r0, [r1] // SIGILL on some arm64 without CONFIG_ARMV8_DEPRECATED
-
 	mov	r0, #1
 	mov	r2, #3
 	mov	r7, #4	// syscall: write(r0, r1, r2)
