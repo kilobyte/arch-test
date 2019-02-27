@@ -22,7 +22,7 @@ Build-Depends: debhelper (>=11),
 # doko, others: if you want to drop some crap architecture from binutils, feel
 # free to shout at me or NMU arch-test to remove it yourself.  It is enough to
 # remove from Build-Depends, configure will do the right thing.
-Standards-Version: 4.2.1
+Standards-Version: 4.3.0
 Rules-Requires-Root: no
 Vcs-Git: https://github.com/kilobyte/arch-test.git -b debian
 Vcs-Browser: https://github.com/kilobyte/arch-test/tree/debian

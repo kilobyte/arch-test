@@ -1,3 +1,11 @@
+arch-test (0.15-2) unstable; urgency=medium
+
+  * Don't check for SWP on armel; it's not needed in the vast majority of
+    cases anymore.  Yes, you'll get crashes if it's actually used.
+    Closes: #922728.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Wed, 27 Feb 2019 13:41:50 +0100
+
 arch-test (0.15-1) unstable; urgency=medium
 
   * New upstream release.
