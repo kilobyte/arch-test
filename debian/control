@@ -2,7 +2,7 @@ Source: arch-test
 Section: admin
 Priority: optional
 Maintainer: Adam Borowski <kilobyte@angband.pl>
-Build-Depends: debhelper (>=11),
+Build-Depends: debhelper-compat (=12),
  binutils-x86-64-linux-gnu [!amd64 !i386 !x32],
  binutils-aarch64-linux-gnu [!arm64],
  binutils-arm-linux-gnueabihf [!armhf !armel !arm],
