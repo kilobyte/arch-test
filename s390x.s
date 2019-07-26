@@ -9,7 +9,7 @@ base:
 	sr	%r1, %r2
 	lhi	%r2, 1
 	la	%r3, msg(%r1)
-	lhi	%r4, 3
+	lghi	%r4, 3
 	svc	4
 
 	xr	%r2, %r2
