@@ -1,3 +1,13 @@
+arch-test (0.16-1) unstable; urgency=medium
+
+  * New upstream release.
+    + Fix false negatives on s390x due to uninitialized register upper half
+      (Alexander Efremkin).
+  * Add a test that no-args invocation doesn't spew errors on failed archs.
+  * dh 12.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Sat, 27 Jul 2019 02:25:41 +0200
+
 arch-test (0.15-2) unstable; urgency=medium
 
   * Don't check for SWP on armel; it's not needed in the vast majority of
