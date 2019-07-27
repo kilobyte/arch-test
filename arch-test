@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Near-misses fail with SIGILL or SIGSEGV, we don't want core dumps.
 ulimit -c 0
