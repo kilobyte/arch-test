@@ -1,1 +1,1 @@
-Tests: dpkg-arch-works
+Tests: dpkg-arch-works no-stderr

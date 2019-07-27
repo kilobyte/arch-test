@@ -1,0 +1,4 @@
+#!/bin/sh
+# All detection errors should be hidden (they mean a negative).
+
+arch-test
