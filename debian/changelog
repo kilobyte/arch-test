@@ -1,3 +1,10 @@
+arch-test (0.16-2) unstable; urgency=medium
+
+  * Build mips{,64}{,el} tests on mips64el ("mips" is no more).
+  * Drop an unused lintian override.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Thu, 22 Aug 2019 23:22:14 +0200
+
 arch-test (0.16-1) unstable; urgency=medium
 
   * New upstream release.
