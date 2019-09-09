@@ -8,8 +8,8 @@ _start:
 	addi a1, a1, %lo(msg)
 	li a2, 3
 	li a7, 64
-	scall			# syscall: write(a0, a1, a2)
+	ecall			# syscall: write(a0, a1, a2)
 
 	li a0, 0
 	li a7, 93
-	scall			# syscall: _exit(a0)
+	ecall			# syscall: _exit(a0)
