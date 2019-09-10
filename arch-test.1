@@ -29,9 +29,9 @@ If \fB-n\fR is specified, \fBarch-test\fR will try to disable known
 emulators (currently \fBqemu\fR and \fBwine\fR).  Note that a whole-machine
 emulator appears to be native as far as the kernel is concerned.
 
-With \fB-c\fR \fI<chroot>\fR, the test is done inside a given chroot (note
-that binfmt requires an interpreter to live \fIinside\fR the chroot); this
-is not needed with \fB-n\fR.   Root privileges are required here.
+With \fB-c\fR \fI<chroot>\fR, the test is done inside a given chroot
+(qemu-user before 2.12 required the interpreter to live \fIinside\fR the
+chroot).  Root privileges are required here.
 
 When called with an arch name as an argument, \fBarch-test\fR tests the
 specified architecture.  A human-friendly message will be printed, and the
