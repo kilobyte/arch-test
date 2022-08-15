@@ -18,7 +18,7 @@ _start:
 	pushq	$0		# 0
 	mov	%rbp, %r9	# &dummy
 	mov	$3, %r8		# 3
-	lea	msg, %rdx	# msg
+	lea	msg(%rip), %rdx	# msg
 	mov	%rax, %rcx	# stdout
 	call	WriteFile
 	# cleaning the stack is for wimps
