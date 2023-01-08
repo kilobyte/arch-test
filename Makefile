@@ -15,12 +15,14 @@ ARCHS=amd64 x32 i386 \
 	hppa \
 	ia64 \
 	riscv64 \
+	loong64 \
 
 X86=x86_64-linux-gnu
 MIPS=mips-linux-gnu
 POWERPC=powerpc-linux-gnu
 ARM=arm-linux-gnueabihf
 SPARC=sparc64-linux-gnu
+LOONG64=loongarch64-linux-gnu
 -include config
 all: $(ARCHS:%=arch-test-%)
 
@@ -176,3 +178,7 @@ arch-test-ia64: ia64.s
 arch-test-riscv64: riscv64.s
 	riscv64-linux-gnu-as $^ -o riscv64.o
 	riscv64-linux-gnu-ld -z noexecstack -s riscv64.o -o $@
+
+arch-test-loong64: loong64.s
+	$(LOONG64)-as $^ -o loong64.o
+	$(LOONG64)-ld -z noexecstack -s loong64.o -o $@
