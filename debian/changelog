@@ -1,3 +1,10 @@
+arch-test (0.20-1) unstable; urgency=medium
+
+  * New upstream release (+arc, [not enabled] loong64).
+  * No loong64 because we don't have a binutils package yet.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Mon, 09 Jan 2023 22:33:12 +0100
+
 arch-test (0.19-1) unstable; urgency=medium
 
   * New upstream release.

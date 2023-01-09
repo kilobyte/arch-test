@@ -17,12 +17,14 @@ Build-Depends: debhelper-compat (=13),
  binutils-hppa-linux-gnu [!hppa],
  binutils-ia64-linux-gnu [!ia64],
  binutils-riscv64-linux-gnu [!riscv64],
+#binutils-loong64-linux-gnu [!loong64],
+ binutils-arc-linux-gnu [!arc],
  binutils-mingw-w64-i686, mingw-w64-i686-dev,
  binutils-mingw-w64-x86-64, mingw-w64-x86-64-dev,
 # doko, others: if you want to drop an architecture from binutils, feel
 # free to shout at me or NMU arch-test to remove it yourself.  It is
 # enough to remove from Build-Depends, configure will do the right thing.
-Standards-Version: 4.6.1
+Standards-Version: 4.6.2
 Rules-Requires-Root: no
 Vcs-Git: https://github.com/kilobyte/arch-test.git -b debian
 Vcs-Browser: https://github.com/kilobyte/arch-test/tree/debian
@@ -57,3 +59,4 @@ Description: detect architectures supported by your machine/kernel
   * hppa
   * ia64
   * riscv64
+  * arc
