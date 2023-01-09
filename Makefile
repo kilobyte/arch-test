@@ -16,6 +16,7 @@ ARCHS=amd64 x32 i386 \
 	ia64 \
 	riscv64 \
 	loong64 \
+	arc \
 
 X86=x86_64-linux-gnu
 MIPS=mips-linux-gnu
@@ -181,3 +182,7 @@ arch-test-riscv64: riscv64.s
 arch-test-loong64: loong64.s
 	loongarch64-linux-gnu-as $^ -o loong64.o
 	loongarch64-linux-gnu-ld -z noexecstack -s loong64.o -o $@
+
+arch-test-arc: arc.s
+	arc-linux-gnu-as $^ -o arc.o
+	arc-linux-gnu-ld -z noexecstack -s arc.o -o $@
