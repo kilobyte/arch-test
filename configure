@@ -35,6 +35,7 @@ alt qw(MIPS mips-linux-gnu mipsel-linux-gnu mips64-linux-gnuabi64
 alt qw(POWERPC powerpc-linux-gnu powerpc64-linux-gnu);
 alt qw(ARM arm-linux-gnueabihf arm-linux-gnueabi);
 alt qw(SPARC sparc64-linux-gnu sparc-linux-gnu);
+alt qw(LOONG64 loongarch64-linux-gnuf64 loongarch64-linux-gnu);
 
 while (/^arch-test-([a-z0-9-]+):.*\n\t([a-z0-9_.-]+-(?:gcc|as))/mg)
 {
