@@ -23,6 +23,7 @@ MIPS=mips-linux-gnu
 POWERPC=powerpc-linux-gnu
 ARM=arm-linux-gnueabihf
 SPARC=sparc64-linux-gnu
+LOONG64=loongarch64-linux-gnuf64
 -include config
 all: $(ARCHS:%=arch-test-%)
 
@@ -180,8 +181,8 @@ arch-test-riscv64: riscv64.s
 	riscv64-linux-gnu-ld -z noexecstack -s riscv64.o -o $@
 
 arch-test-loong64: loong64.s
-	loongarch64-linux-gnu-as $^ -o loong64.o
-	loongarch64-linux-gnu-ld -z noexecstack -s loong64.o -o $@
+	$(LOONG64)-as $^ -o loong64.o
+	$(LOONG64)-ld -z noexecstack -s loong64.o -o $@
 
 arch-test-arc: arc.s
 	arc-linux-gnu-as $^ -o arc.o
