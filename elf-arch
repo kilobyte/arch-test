@@ -87,31 +87,31 @@ sub pe()
     $_=unpack 'v';
 
     my %pe_arch=(
-        0x0 => 'pe-universal',
-        0x1d3 => 'win-am33',
-	0x8664 => 'win64',
-	0x1c0 => 'win-arm',
-	0xaa64 => 'win-arm64',
-	0x1c4 => 'win-armnt', #	ARM Thumb-2 little endian
-	0xebc => 'ebc', # EFI byte code
-	0x14c => 'win32',
-	0x200 => 'win-ia64',
-	0x9041 => 'win-m32r',
-	0x266 => 'win-mips16',
-	0x366 => 'win-mipsfpu',
-	0x466 => 'win-mipsfpu16',
-	0x1f0 => 'win-powerpc',
-	0x1f1 => 'win-powerpcfp',
-	0x166 => 'win-r4000',
-	0x5032 => 'win-riscv32',
-	0x5064 => 'win-riscv64',
-	0x5128 => 'win-riscv128',
-	0x1a2 => 'win-sh3',
-	0x1a3 => 'win-sh3dsp',
-	0x1a6 => 'win-sh4',
-	0x1a8 => 'win-sh4',
-	0x1c2 => 'win-thumb',
-	0x169 => 'win-wcemipsv2',
+        0x0000 => 'pe-universal',
+        0x01d3 => 'win-am33',
+        0x8664 => 'win64',
+        0x01c0 => 'win-arm',
+        0xaa64 => 'win-arm64',
+        0x01c4 => 'win-armnt', # ARM Thumb-2 little endian
+        0x0ebc => 'ebc', # EFI byte code
+        0x014c => 'win32',
+        0x0200 => 'win-ia64',
+        0x9041 => 'win-m32r',
+        0x0266 => 'win-mips16',
+        0x0366 => 'win-mipsfpu',
+        0x0466 => 'win-mipsfpu16',
+        0x01f0 => 'win-powerpc',
+        0x01f1 => 'win-powerpcfp',
+        0x0166 => 'win-r4000',
+        0x5032 => 'win-riscv32',
+        0x5064 => 'win-riscv64',
+        0x5128 => 'win-riscv128',
+        0x01a2 => 'win-sh3',
+        0x01a3 => 'win-sh3dsp',
+        0x01a6 => 'win-sh4',
+        0x01a8 => 'win-sh4',
+        0x01c2 => 'win-thumb',
+        0x0169 => 'win-wcemipsv2',
     );
 
     return $pe_arch{$_}//'pe-unknown';
