@@ -14,7 +14,7 @@ ARCHS=amd64 x32 i386 \
 	alpha \
 	hppa \
 	ia64 \
-	riscv64 \
+	riscv32 riscv64 \
 	loong64 \
 	arc \
 
@@ -187,3 +187,7 @@ arch-test-loong64: loong64.s
 arch-test-arc: arc.s
 	arc-linux-gnu-as $^ -o arc.o
 	arc-linux-gnu-ld -z noexecstack -s arc.o -o $@
+
+arch-test-riscv32: riscv32.s
+	riscv32-linux-gnu-as $^ -o riscv32.o
+	riscv32-linux-gnu-ld -z noexecstack -s riscv32.o -o $@
