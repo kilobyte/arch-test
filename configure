@@ -1,5 +1,7 @@
 #!/usr/bin/perl -w
 
+my ($ok, $no) = (-t 1)? ("\e[32;1m✓\e[0m ", "\e[31;1m✗\e[0m ") : ("", "");
+
 open MAKEFILE, "<Makefile";
 {undef local $/; $_=<MAKEFILE>}
 close MAKEFILE;
@@ -43,11 +45,11 @@ while (/^arch-test-([a-z0-9-]+):.*\n\t([a-z0-9_.-]+-(?:gcc|as))/mg)
     `which $2`;
     if ($?)
     {
-        print "Missing $1: $2 not installed\n";
+        print "${no}Missing $1: $2 not installed\n";
     }
     else
     {
-        print "$1: $2\n";
+        print "$ok$1: $2\n";
         push @FOUND, "$1";
     }
 }
