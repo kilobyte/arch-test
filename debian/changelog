@@ -1,3 +1,10 @@
+arch-test (0.21-1) unstable; urgency=medium
+
+  * New upstream release.
+  * No riscv32 because no binutils in Debian.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Fri, 07 Jul 2023 07:34:05 +0200
+
 arch-test (0.20-1) unstable; urgency=medium
 
   * New upstream release (+arc, [not enabled] loong64).
