@@ -2,14 +2,11 @@
 msg:	.ascii "ok\n"
 .text
 .globl _start
-.section        ".opd","aw"
 .align 3
 _start:
-.quad   ._start,.TOC.@tocbase,0
-.previous
-
-.global  ._start
-._start:
+	addis	2, 12, .TOC. - _start@ha
+	addi	2, 2,  .TOC. - _start@l
+.localentry _start, . -_start
 	mtvsrd	0, 0	# trigger SIGILL on power7 CPUs
 
 	li	0, 4	# syscall write(r3, r4, r5)
