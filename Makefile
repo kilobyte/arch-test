@@ -36,12 +36,12 @@ DESTDIR=
 PREFIX=/usr/local
 install: all
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	mkdir -p $(DESTDIR)$(PREFIX)/lib/arch-test/
-	sed -e "s|^HELPERS.*|HELPERS=$(PREFIX)/lib/arch-test/|;s&..git describe.&$(VERSION)&" \
+	mkdir -p $(DESTDIR)$(PREFIX)/libexec/arch-test/
+	sed -e "s|^HELPERS.*|HELPERS=$(PREFIX)/libexec/arch-test/|;s&..git describe.&$(VERSION)&" \
 		<arch-test >$(DESTDIR)$(PREFIX)/bin/arch-test
 	chmod a+x $(DESTDIR)$(PREFIX)/bin/arch-test
 	for x in $(ARCHS); do cp -p arch-test-$$x \
-		$(DESTDIR)$(PREFIX)/lib/arch-test/$$x;done
+		$(DESTDIR)$(PREFIX)/libexec/arch-test/$$x;done
 	mkdir -p $(DESTDIR)$(PREFIX)/share/man/man1/
 	install -p *.1 $(DESTDIR)$(PREFIX)/share/man/man1/
 	install -p elf-arch $(DESTDIR)$(PREFIX)/bin/
