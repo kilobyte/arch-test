@@ -1,3 +1,11 @@
+arch-test (0.21-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Remove ia64 support. (Closes: #1089980)
+    - Binutils has dropped binutils-ia64-linux-gnu.
+
+ -- Sudip Mukherjee <sudipm.mukherjee@gmail.com>  Thu, 19 Dec 2024 19:55:53 +0000
+
 arch-test (0.21-1) unstable; urgency=medium
 
   * New upstream release.
