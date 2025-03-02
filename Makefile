@@ -176,8 +176,8 @@ arch-test-ia64: ia64.s
 	ia64-linux-gnu-ld -z noexecstack -s ia64.o -o $@
 
 arch-test-riscv64: riscv64.s
-	riscv64-linux-gnu-as $^ -o riscv64.o
-	riscv64-linux-gnu-ld -z noexecstack -s riscv64.o -o $@
+	$(RISCV)-as --march=rv64g $^ -o riscv64.o
+	$(RISCV)-ld -z noexecstack -m elf64lriscv -s riscv64.o -o $@
 
 arch-test-loong64: loong64.s
 	loongarch64-linux-gnu-as $^ -o loong64.o
@@ -188,5 +188,5 @@ arch-test-arc: arc.s
 	arc-linux-gnu-ld -z noexecstack -s arc.o -o $@
 
 arch-test-riscv32: riscv32.s
-	riscv32-linux-gnu-as $^ -o riscv32.o
-	riscv32-linux-gnu-ld -z noexecstack -s riscv32.o -o $@
+	$(RISCV)-as --march=rv32g $^ -o riscv32.o
+	$(RISCV)-ld -z noexecstack -m elf32lriscv -s riscv32.o -o $@
