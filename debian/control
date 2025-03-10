@@ -16,7 +16,7 @@ Build-Depends: debhelper-compat (=13),
  binutils-alpha-linux-gnu [!alpha],
  binutils-hppa-linux-gnu [!hppa],
  binutils-riscv64-linux-gnu [!riscv64],
-#binutils-loong64-linux-gnu [!loong64],
+ binutils-loongarch64-linux-gnu [!loong64],
  binutils-arc-linux-gnu [!arc],
  binutils-mingw-w64-i686, mingw-w64-i686-dev,
  binutils-mingw-w64-x86-64, mingw-w64-x86-64-dev,
@@ -56,5 +56,6 @@ Description: detect architectures supported by your machine/kernel
   * kfreebsd-amd64, kfreebsd-i386
   * alpha
   * hppa
-  * riscv64
+  * riscv64, riscv32
   * arc
+  * loong64
