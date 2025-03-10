@@ -36,12 +36,12 @@ DESTDIR=
 PREFIX=/usr/local
 install: all
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	mkdir -p $(DESTDIR)$(PREFIX)/lib/arch-test/
-	sed -e "s|^HELPERS.*|HELPERS=$(PREFIX)/lib/arch-test/|;s&..git describe.&$(VERSION)&" \
+	mkdir -p $(DESTDIR)$(PREFIX)/libexec/arch-test/
+	sed -e "s|^HELPERS.*|HELPERS=$(PREFIX)/libexec/arch-test/|;s&..git describe.&$(VERSION)&" \
 		<arch-test >$(DESTDIR)$(PREFIX)/bin/arch-test
 	chmod a+x $(DESTDIR)$(PREFIX)/bin/arch-test
 	for x in $(ARCHS); do cp -p arch-test-$$x \
-		$(DESTDIR)$(PREFIX)/lib/arch-test/$$x;done
+		$(DESTDIR)$(PREFIX)/libexec/arch-test/$$x;done
 	mkdir -p $(DESTDIR)$(PREFIX)/share/man/man1/
 	install -p *.1 $(DESTDIR)$(PREFIX)/share/man/man1/
 	install -p elf-arch $(DESTDIR)$(PREFIX)/bin/
@@ -176,8 +176,8 @@ arch-test-ia64: ia64.s
 	ia64-linux-gnu-ld -z noexecstack -s ia64.o -o $@
 
 arch-test-riscv64: riscv64.s
-	riscv64-linux-gnu-as $^ -o riscv64.o
-	riscv64-linux-gnu-ld -z noexecstack -s riscv64.o -o $@
+	$(RISCV)-as --march=rv64g $^ -o riscv64.o
+	$(RISCV)-ld -z noexecstack -m elf64lriscv -s riscv64.o -o $@
 
 arch-test-loong64: loong64.s
 	loongarch64-linux-gnu-as $^ -o loong64.o
@@ -188,5 +188,5 @@ arch-test-arc: arc.s
 	arc-linux-gnu-ld -z noexecstack -s arc.o -o $@
 
 arch-test-riscv32: riscv32.s
-	riscv32-linux-gnu-as $^ -o riscv32.o
-	riscv32-linux-gnu-ld -z noexecstack -s riscv32.o -o $@
+	$(RISCV)-as --march=rv32g $^ -o riscv32.o
+	$(RISCV)-ld -z noexecstack -m elf32lriscv -s riscv32.o -o $@
