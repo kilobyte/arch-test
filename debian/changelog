@@ -1,3 +1,12 @@
+arch-test (0.22-1) unstable; urgency=medium
+
+  * New upstream release.
+    + can cross riscv32 using riscv64 binutils.
+    + installs into libexec not lib
+  * Enable loong64, we have binutils now; closes: #1099639.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Mon, 10 Mar 2025 05:21:30 +0100
+
 arch-test (0.21-1.1) unstable; urgency=medium
 
   * Non-maintainer upload.
