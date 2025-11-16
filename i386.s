@@ -4,6 +4,7 @@ msg:	.ascii "ok\n"
 .text
 _start:
 	cmovz	%eax, %ebx	# 686 required as of Debian stretch
+	lfence			# SSE2 required as of Debian forky
 
 	movl	$4, %eax	# syscall: write(ebx, ecx, edx)
 	movl	$1, %ebx
