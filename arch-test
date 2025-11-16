@@ -4,6 +4,7 @@
 ulimit -c 0
 
 HELPERS=$0-
+CHROOT=
 
 case "$1" in
   --version)
