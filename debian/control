@@ -7,7 +7,6 @@ Build-Depends: debhelper-compat (=13),
  binutils-aarch64-linux-gnu [!arm64],
  binutils-arm-linux-gnueabihf [!armhf !armel !arm],
  binutils-m68k-linux-gnu [!m68k],
- binutils-mips64el-linux-gnuabi64 [!mips !mipsel !mips64 !mips64el],
  binutils-powerpc-linux-gnu [!powerpc !ppc64],
  binutils-powerpc64le-linux-gnu [!ppc64el],
  binutils-s390x-linux-gnu [!s390x],
@@ -44,7 +43,6 @@ Description: detect architectures supported by your machine/kernel
  .
  Architectures detected by this version of arch-test are:
   * amd64, i386, x32
-  * mips, mipsel, mips64, mips64el
   * arm, armel, armhf, arm64, arm64ilp32
   * powerpc, ppc64, ppc64el, powerpcspe
   * m68k
