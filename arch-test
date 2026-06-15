@@ -56,9 +56,14 @@ if [ $# -eq 1 ]
         HELPER_F="$(basename $HELPERS$1)"
         cp -p "$HELPERS$1" "$CHROOT/$HELPER_F"
         trap "rm '$CHROOT/$HELPER_F'" 0
-        MSG=`chroot "$CHROOT" /"$HELPER_F" 2>/dev/null`
-      else
-        MSG=`$HELPERS$1 2>/dev/null`
+		if [ "${1}" = 'powerpcspe' ]
+          then MSG=$( chroot "${CHROOT}" sh -c "QEMU_CPU='e500v2' /"$HELPER_F"" 2>/dev/null )
+		  else MSG=$( chroot "${CHROOT}" /"${HELPER_F}" 2>/dev/null )
+		fi
+      elif [ "${1}" = 'powerpcspe' ]; then
+	    MSG=$( QEMU_CPU='e500v2' "${HELPERS}${1}" 2>/dev/null )
+	  else
+        MSG=$( "${HELPERS}${1}" 2>/dev/null )
     fi
     if [ $? -eq 0 -a "x$MSG" = "xok" ]
       then echo "$1: ok"; exit 0
@@ -70,7 +75,10 @@ for x in $HELPERS*
   do
     ARCH="$(basename "$x")"
     ARCH="${ARCH##arch-test-}"
-    MSG=`"$x" 2>/dev/null|tr -d '\r'`
+	if [ "${ARCH}" = 'powerpcspe' ]
+	  then MSG=$( QEMU_CPU='e500v2' "${x}" 2>/dev/null | tr -d '\r' )
+      else MSG=$( "${x}" 2>/dev/null | tr -d '\r' )
+	fi
     if [ $? -eq 0 -a "x$MSG" = "xok" ]
       then echo "$ARCH"
     fi
